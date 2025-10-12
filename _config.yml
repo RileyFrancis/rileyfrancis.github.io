@@ -1,0 +1,63 @@
+# ======================================================
+#  Riley Francis - GitHub Pages Configuration
+# ======================================================
+
+# Basic site info
+title: "Riley Francis"
+description: "Dual-degree Computer Science & Mathematics student at UConn. Interested in AI, Machine Learning, and Graph Theory."
+url: "https://rileyfrancis.github.io"
+baseurl: ""  # Leave empty unless deploying under a subpath
+
+# Author info
+author:
+  name: "Riley Francis"
+  email: "riley.francis@uconn.edu"
+  linkedin: "https://www.linkedin.com/in/rileyfrancis314"
+  github: "https://github.com/RileyFrancis"
+
+# Theme
+theme: jekyll-theme-minimal
+# Other popular options: jekyll-theme-cayman, jekyll-theme-slate, jekyll-theme-midnight
+
+# Navigation links (appear in header for some themes)
+nav:
+  - name: "Home"
+    link: /
+  - name: "Résumé"
+    link: /resume/
+
+# Optional logo or profile image
+# Place an image named 'profile.jpg' or 'avatar.png' in your root directory or /assets/img/
+logo: "/assets/img/profile.jpg"
+
+# Markdown & formatting
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Enable GitHub Pages defaults
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# Social links for footer or sidebar (depends on theme)
+social_links:
+  linkedin: "rileyfrancis314"
+  github: "RileyFrancis"
+
+# Exclude files you don't want processed
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+
+# ======================================================
+#  End of Configuration
+# ======================================================
