@@ -89,7 +89,22 @@
 <div class="section">
   <div class="line">
     <div class="left">
-      <strong>Interpreting GNNs with MIPExplainer</strong>
+      <strong>Methods for Autonomous Robotic Navigation</strong>
+      <span class="subrole">Senior Design Project</span>
+    </div>
+    <div class="right">
+      Storrs, Connecticut
+      <span class="date">Aug 2025 – Present</span>
+    </div>
+  </div>
+  <div class="details"><em>Researching various methods for autonomous robotic navigation within Habitat-Lab, including SLAM, reinforcement learning, and VLMaps.</em></div>
+  <div class="details">Mentor: Dr. </div>
+</div>
+
+<div class="section">
+  <div class="line">
+    <div class="left">
+      <strong>Interpreting GNNs with MIPExplainer:</strong>
       <span class="subrole">Explanations for Alzheimer's and Autism</span>
     </div>
     <div class="right">
@@ -99,4 +114,19 @@
   </div>
   <div class="details"><em>Utilized MIPExplainer — an explainer for graph neural networks — to provide sparse model-level explanations for Alzheimer’s Disease and Autism Spectrum Disorder, highlighting key brain regions responsible for these conditions.</em></div>
   <div class="details">Mentor: Dr. Chunjiang Zhu</div>
+</div>
+
+<div class="section">
+  <div class="line">
+    <div class="left">
+      <strong>Making Lane Detection Efficient for Autonomous Model Vehicles</strong>
+      <span class="subrole">Explanations for Alzheimer's and Autism</span>
+    </div>
+    <div class="right">
+      Storrs, Connecticut
+      <span class="date">Feb 2021 – Jan 2023</span>
+    </div>
+  </div>
+  <div class="details"><em>Built and programmed autonomous model vehicles capable of following road markings and stopping in the presence of obstacles. Presented our work at IEEE/ACM International Symposium on Low Power Electronics and Design (ISLPED)</em></div>
+  <div class="details">Mentors: Dr. Caiwen Ding, Dr. Fei Miao, Dr. Jinbo Bi, Dr. Shengli Zhou</div>
 </div>
