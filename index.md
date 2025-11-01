@@ -52,7 +52,7 @@
       <span class="date">Aug 2023 – May 2026</span>
     </div>
   </div>
-  <div class="details"><em>BS Computer Science, BA Pure Mathematics</em></div>
+  <div class="details"><em>BS Computer Science <br> BA Pure Mathematics</em></div>
   <div class="details">Honors Program, Honors Scholar, Dean’s List<br>GPA: 3.921 / 4.000</div>
 </div>
 
@@ -91,6 +91,21 @@
 <div class="section">
   <div class="line">
     <div class="left">
+      <strong>Methods for Autonomous Robotic Navigation</strong>
+      <span class="subrole">Senior Design Project</span>
+    </div>
+    <div class="right">
+      Storrs, Connecticut
+      <span class="date">Aug 2025 – Present</span>
+    </div>
+  </div>
+  <div class="details"><em>Researching various methods for autonomous robotic navigation within Habitat-Lab, including SLAM, reinforcement learning, and VLMaps.</em></div>
+  <div class="details">Mentor: Dr. Jonathan Shihao Ji</div>
+</div>
+
+<div class="section">
+  <div class="line">
+    <div class="left">
       <strong>Interpreting GNNs with MIPExplainer</strong>
       <span class="subrole">Explanations for Alzheimer’s and Autism</span>
     </div>
@@ -99,7 +114,7 @@
       <span class="date">May 2025 – July 2025</span>
     </div>
   </div>
-  <div class="details"><em>Utilized MIPExplainer — an explainer for graph neural networks — to provide sparse model-level explanations for Alzheimer’s Disease and Autism Spectrum Disorder, highlighting key brain regions responsible for these conditions.</em></div>
+  <div class="details"><em>Utilized MIPExplainer — an explainer for graph neural networks (GNNs) utilizing mixed integer programming — to provide sparse model-level explanations for Alzheimer’s Disease and Autism Spectrum Disorder, highlighting key brain regions responsible for these conditions.</em></div>
   <div class="details">Mentor: Dr. Chunjiang Zhu</div>
 </div>
 
@@ -116,21 +131,6 @@
   </div>
   <div class="details"><em>Built and programmed autonomous model vehicles capable of following road markings and stopping in the presence of obstacles. Presented our work at IEEE/ACM International Symposium on Low Power Electronics and Design (ISLPED).</em></div>
   <div class="details">Mentors: Dr. Caiwen Ding, Dr. Fei Miao, Dr. Jinbo Bi, Dr. Shengli Zhou</div>
-</div>
-
-<div class="section">
-  <div class="line">
-    <div class="left">
-      <strong>Methods for Autonomous Robotic Navigation</strong>
-      <span class="subrole">Senior Design Project</span>
-    </div>
-    <div class="right">
-      Storrs, Connecticut
-      <span class="date">Aug 2025 – Present</span>
-    </div>
-  </div>
-  <div class="details"><em>Researching various methods for autonomous robotic navigation within Habitat-Lab, including SLAM, reinforcement learning, and VLMaps.</em></div>
-  <div class="details">Mentor: Dr. [add mentor’s name]</div>
 </div>
 
 ---
@@ -181,7 +181,7 @@
 
 <div class="section">
   <div class="line">
-    <div class="left"><strong>UConn Mathematics Club</strong></div>
+    <div class="left"><strong>UConn Mathematics Club</strong><span class="subrole">Member</span></div>
     <div class="right">
       Storrs, Connecticut
       <span class="date">Aug 2024 – May 2026</span>
@@ -222,3 +222,9 @@
 <div class="section">
   <div class="details">Graph Theory, Number Theory, Cybersecurity, Machine Learning, Artificial Intelligence</div>
 </div>
+
+---
+
+## Selected Projects
+
+<iframe src="https://www.desmos.com/3d/gfo5gsitrw" width="800" height="600"></iframe>
