@@ -10,7 +10,16 @@
 }
 .left {
   flex: 1;
+}
+.left strong {
+  display: block;
   font-weight: 600;
+}
+.subrole {
+  color: #555;
+  font-style: italic;
+  margin-top: 0.1rem;
+  display: block;
 }
 .right {
   text-align: right;
@@ -34,7 +43,10 @@
 
 <div class="section">
   <div class="line">
-    <div class="left"><strong>University of Connecticut</strong>, Dual Degree</div>
+    <div class="left">
+      <strong>University of Connecticut</strong>
+      <span class="subrole">Dual Degree</span>
+    </div>
     <div class="right">
       Storrs, Connecticut
       <span class="date">Aug 2023 – Present</span>
@@ -46,7 +58,10 @@
 
 <div class="section">
   <div class="line">
-    <div class="left"><strong>University of Edinburgh</strong>, Visiting Student</div>
+    <div class="left">
+      <strong>University of Edinburgh</strong>
+      <span class="subrole">Visiting Student</span>
+    </div>
     <div class="right">
       Edinburgh, Scotland
       <span class="date">Jan 2025 – May 2025</span>
@@ -57,7 +72,10 @@
 
 <div class="section">
   <div class="line">
-    <div class="left"><strong>Summer African Field Ecology</strong>, UConn Study Abroad Program</div>
+    <div class="left">
+      <strong>Summer African Field Ecology</strong>
+      <span class="subrole">UConn Study Abroad Program</span>
+    </div>
     <div class="right">
       Limpopo, South Africa
       <span class="date">May 2024 – June 2024</span>
@@ -70,7 +88,10 @@
 
 <div class="section">
   <div class="line">
-    <div class="left"><strong>Interpreting GNNs with MIPExplainer</strong>: Explanations for Alzheimer's and Autism</div>
+    <div class="left">
+      <strong>Interpreting GNNs with MIPExplainer</strong>
+      <span class="subrole">Explanations for Alzheimer's and Autism</span>
+    </div>
     <div class="right">
       Greensboro, North Carolina
       <span class="date">May 2025 – Jul 2025</span>
