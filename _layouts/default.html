@@ -16,17 +16,17 @@
     <div class="wrapper">
       <header>
         <!-- Custom Title -->
-        <h1><a href="{{ '/' | absolute_url }}">Riley Francis</a></h1>
+        <h1 style="text-align: center;"><a href="{{ '/' | absolute_url }}">Riley Francis</a></h1>
 
         <!-- Custom Profile Image -->
-        <img src="{{ '/assets/img/cropped_circle_image.png' | relative_url }}" alt="Riley Francis portrait" style="max-width: 200px; border-radius: 8px; margin-bottom: 1rem;" />
+        <img src="{{ '/assets/img/cropped_circle_image.png' | relative_url }}" alt="Riley Francis portrait" style="max-width: 300px; margin-bottom: 1rem;" />
 
         <!-- Description text (optional: pulled from _config.yml or set manually) -->
         <p style="text-align: center;">{{ site.description | default: "Mathematics & Computer Science Student @ UConn" }}</p>
         <p style="text-align: center;">CS & Math & UConn</p>
 
         {% if site.github.is_project_page %}
-          <p class="view">
+          <p style="text-align: center;" class="view">
             <a href="{{ site.github.repository_url }}">
               View the Project on GitHub <small>{{ site.github.repository_nwo }}</small>
             </a>
@@ -56,7 +56,7 @@
         {% if site.github.is_project_page %}
           <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
         {% endif %}
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        <p style="text-align: center;"><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
 
