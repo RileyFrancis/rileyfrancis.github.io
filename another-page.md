@@ -1,9 +1,14 @@
 ---
 layout: default
+title: Projects
+permalink: /projects/
 ---
 
-## Welcome to another page
+# Projects
 
-_yay_
+Here are some things I've worked on:
 
-[back](./)
+- RL with Boston Dynamics Spot in Habitat-Lab  
+- fMRI GNN analysis  
+- Multi-location inventory database  
+- etc.
