@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ASL Live Demo</title>
+  <title>ASL Letter Classifier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- TF.js (match converter major version) -->
+  <!-- TF.js -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
 
-  <!-- MediaPipe Hands + camera utils + drawing utils -->
+  <!-- MediaPipe Hands -->
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
@@ -16,114 +16,133 @@
   <style>
     body {
       margin: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background: #0f172a;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: #e5e7eb;
-    }
-    .container {
+      font-family: system-ui, sans-serif;
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: center;
-      padding: 1.5rem;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .container {
       background: #020617;
       border-radius: 1rem;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-      max-width: 960px;
+      padding: 1.5rem;
+      max-width: 1200px;
       width: 100%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     }
+
     h1 {
-      margin: 0;
-      font-size: 1.6rem;
+      margin: 0 0 1rem 0;
+      text-align: center;
     }
+
+    .main-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
     .video-wrapper {
       position: relative;
       width: 640px;
       max-width: 100%;
-      border-radius: 0.75rem;
+      flex: 1 1 640px;
+      border-radius: .75rem;
       overflow: hidden;
       border: 1px solid #1f2937;
     }
+
+    /* Display canvas mirrored for the user */
     #output-canvas {
       width: 100%;
       display: block;
+      transform: scaleX(-1);
     }
+
     #video {
-      display: none; /* we only show the canvas overlay */
+      display: none;
     }
-    .status-row {
+
+    .prediction-column {
+      flex: 1 1 320px;
+      max-width: 380px;
       display: flex;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 640px;
+      flex-direction: column;
       gap: 1rem;
-      flex-wrap: wrap;
     }
+
     .status-box {
-      flex: 1 1 200px;
       background: #020617;
-      border-radius: 0.75rem;
-      padding: 0.75rem 1rem;
       border: 1px solid #1f2937;
+      padding: 0.75rem 1rem;
+      border-radius: .75rem;
     }
+
     .status-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      font-size: .8rem;
+      letter-spacing: .08em;
       color: #9ca3af;
-      margin-bottom: 0.25rem;
+      margin-bottom: .25rem;
+      text-transform: uppercase;
     }
+
     #prediction-letter {
       font-size: 2.5rem;
       font-weight: 700;
+      line-height: 1;
     }
+
     #prediction-confidence {
       font-size: 1rem;
       color: #9ca3af;
     }
-    #hand-status {
-      font-size: 0.95rem;
+
+    #probabilities {
+      max-height: 200px;
+      overflow-y: auto;
     }
-    #fps {
-      font-size: 0.95rem;
-    }
+
     .bar-row {
       display: flex;
       align-items: center;
-      font-size: 0.8rem;
-      margin-bottom: 3px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      margin-bottom: 4px;
+      font-family: monospace;
     }
+
     .bar-label {
       width: 1.5rem;
       color: #9ca3af;
     }
+
     .bar-bg {
       flex: 1;
       height: 8px;
       background: #111827;
       border-radius: 999px;
-      margin: 0 0.35rem;
+      margin: 0 .35rem;
       overflow: hidden;
     }
+
     .bar-fill {
       height: 100%;
       background: #22c55e;
       width: 0%;
     }
+
     .bar-val {
       width: 3rem;
       text-align: right;
       color: #9ca3af;
     }
-    #probabilities {
-      max-height: 180px;
-      overflow-y: auto;
-      margin-top: 0.35rem;
+
+    @media (max-width: 900px) {
+      .main-row {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
@@ -131,42 +150,46 @@
   <div class="container">
     <h1>ASL Letter Classifier (Browser Demo)</h1>
 
-    <div class="video-wrapper">
-      <video id="video" autoplay playsinline></video>
-      <canvas id="output-canvas"></canvas>
-    </div>
+    <div class="main-row">
 
-    <div class="status-row">
-      <div class="status-box">
-        <div class="status-label">Prediction</div>
-        <div id="prediction-letter">–</div>
-        <div id="prediction-confidence">–</div>
+      <!-- LEFT: MIRRORED VIDEO -->
+      <div class="video-wrapper">
+        <video id="video" autoplay playsinline></video>
+        <canvas id="output-canvas"></canvas>
       </div>
-      <div class="status-box">
-        <div class="status-label">Status</div>
-        <div id="hand-status">Loading model…</div>
-        <div id="fps">FPS: –</div>
-      </div>
-    </div>
 
-    <div class="status-box" style="max-width: 640px; width:100%;">
-      <div class="status-label">Class Probabilities</div>
-      <div id="probabilities"></div>
+      <!-- RIGHT: PREDICTIONS -->
+      <div class="prediction-column">
+        <div class="status-box">
+          <div class="status-label">Prediction</div>
+          <div id="prediction-letter">–</div>
+          <div id="prediction-confidence">–</div>
+        </div>
+
+        <div class="status-box">
+          <div class="status-label">Status</div>
+          <div id="hand-status">Loading model…</div>
+          <div id="fps">FPS: –</div>
+        </div>
+
+        <div class="status-box">
+          <div class="status-label">Class Probabilities</div>
+          <div id="probabilities"></div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
     // ===== CONFIG =====
-    const MODEL_URL = "./web_model_fp16/model.json";  // adjust if path differs
+    const MODEL_URL = "./web_model/model.json";
     const CLASS_NAMES = [
-      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
-      'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
-      'S', 'T', 'U', 'V', 'W', 'X', 'Y'
+      'A','B','C','D','E','F','G','H','I',
+      'K','L','M','N','O','P','Q','R',
+      'S','T','U','V','W','X','Y'
     ];
     const IMG_SIZE = 256;
-    const PREDICTION_INTERVAL_MS = 120; // throttle inference
 
-    // Same normalization as in your PyTorch code
     const NORM_MEAN = [0.485, 0.456, 0.406];
     const NORM_STD  = [0.229, 0.224, 0.225];
 
@@ -181,27 +204,31 @@
     const fpsEl    = document.getElementById("fps");
     const probContainer = document.getElementById("probabilities");
 
-    // Hidden canvas for cropping
+    // Canvas used to crop model input
     const cropCanvas = document.createElement("canvas");
-    const cropCtx = cropCanvas.getContext("2d");
     cropCanvas.width = IMG_SIZE;
     cropCanvas.height = IMG_SIZE;
+    const cropCtx = cropCanvas.getContext("2d");
+
+    // Canvas used to mirror video input for MediaPipe + model
+    const mirrorCanvas = document.createElement("canvas");
+    const mirrorCtx = mirrorCanvas.getContext("2d");
+    mirrorCanvas.width = 640;
+    mirrorCanvas.height = 480;
 
     let model = null;
-    let lastPredictionTime = 0;
     let lastFrameTime = performance.now();
-    let fps = 0;
+    let lastPredictionTime = 0;
+    const PRED_INTERVAL_MS = 120;
 
     async function loadModel() {
-      handStatusEl.textContent = "Loading TensorFlow.js model…";
       model = await tf.loadGraphModel(MODEL_URL);
-      handStatusEl.textContent = "Model loaded. Initializing camera…";
-      console.log("TF.js model loaded", model);
+      handStatusEl.textContent = "Model loaded — initializing camera…";
     }
 
     function setupHands() {
       const hands = new Hands({
-        locateFile: (file) =>
+        locateFile: (file) => 
           `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
       });
 
@@ -212,130 +239,105 @@
         minTrackingConfidence: 0.5,
       });
 
-      hands.onResults(async (results) => {
-        const now = performance.now();
-        const dt = now - lastFrameTime;
-        lastFrameTime = now;
-        fps = 1000 / dt;
-        fpsEl.textContent = `FPS: ${fps.toFixed(1)}`;
-
-        // Resize canvas to match video
-        if (canvasEl.width !== videoEl.videoWidth || canvasEl.height !== videoEl.videoHeight) {
-          canvasEl.width = videoEl.videoWidth;
-          canvasEl.height = videoEl.videoHeight;
-        }
-
-        // Draw the video frame
-        ctx.save();
-        ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
-        ctx.drawImage(results.image, 0, 0, canvasEl.width, canvasEl.height);
-
-        // No hands?
-        if (!results.multiHandLandmarks || results.multiHandLandmarks.length === 0) {
-          handStatusEl.textContent = "No hand detected";
-          letterEl.textContent = "–";
-          confEl.textContent = "–";
-          ctx.restore();
-          return;
-        }
-
-        // Use first detected hand
-        const landmarks = results.multiHandLandmarks[0];
-
-        // Draw landmarks
-        drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {color: '#ffffff', lineWidth: 2});
-        drawLandmarks(ctx, landmarks, {color: '#ef4444', lineWidth: 1});
-
-        // Compute bounding box in canvas coordinates
-        let xs = landmarks.map(lm => lm.x * canvasEl.width);
-        let ys = landmarks.map(lm => lm.y * canvasEl.height);
-        let xmin = Math.min(...xs);
-        let xmax = Math.max(...xs);
-        let ymin = Math.min(...ys);
-        let ymax = Math.max(...ys);
-
-        const pad = 20;
-        xmin = Math.max(0, xmin - pad);
-        ymin = Math.max(0, ymin - pad);
-        xmax = Math.min(canvasEl.width,  xmax + pad);
-        ymax = Math.min(canvasEl.height, ymax + pad);
-
-        const boxW = xmax - xmin;
-        const boxH = ymax - ymin;
-
-        // Draw bounding box
-        ctx.strokeStyle = "#22c55e";
-        ctx.lineWidth = 2;
-        ctx.strokeRect(xmin, ymin, boxW, boxH);
-
-        ctx.restore();
-
-        handStatusEl.textContent = "Hand detected";
-
-        // Throttle predictions
-        if (!model) return;
-        if (now - lastPredictionTime < PREDICTION_INTERVAL_MS) return;
-        lastPredictionTime = now;
-
-        if (boxW <= 2 || boxH <= 2) return;
-
-        // Crop from main canvas -> cropCanvas
-        cropCtx.clearRect(0, 0, IMG_SIZE, IMG_SIZE);
-        cropCtx.drawImage(
-          canvasEl,
-          xmin, ymin, boxW, boxH,
-          0, 0, IMG_SIZE, IMG_SIZE
-        );
-
-        // Run classification
-        tf.engine().startScope();
-        try {
-          let img = tf.browser.fromPixels(cropCanvas).toFloat().div(255.0); // [H,W,3]
-
-          // Normalize: (x - mean) / std (broadcast)
-          const offset = tf.tensor1d(NORM_MEAN).reshape([1, 1, 3]);
-          const scale  = tf.tensor1d(NORM_STD).reshape([1, 1, 3]);
-          img = img.sub(offset).div(scale);
-
-          const input = img.expandDims(0); // [1, 256, 256, 3]
-
-          // GraphModel: single input, single output
-          const logits = model.execute({ "input": input }); // or model.execute(input)
-
-          // logits shape: [1, 24]
-          const probsTensor = tf.softmax(logits);
-          const probs = probsTensor.dataSync(); // Float32Array length 24
-
-          // Argmax
-          let maxIdx = 0;
-          let maxVal = -Infinity;
-          for (let i = 0; i < probs.length; i++) {
-            if (probs[i] > maxVal) {
-              maxVal = probs[i];
-              maxIdx = i;
-            }
-          }
-
-          const letter = CLASS_NAMES[maxIdx] || "?";
-          const confidence = maxVal * 100;
-
-          letterEl.textContent = letter;
-          confEl.textContent = `${confidence.toFixed(1)}%`;
-
-          // Update probability bars
-          renderProbabilityBars(probs);
-        } catch (err) {
-          console.error("Inference error:", err);
-          handStatusEl.textContent = "Error during prediction (see console)";
-        } finally {
-          tf.engine().endScope();
-        }
-      });
-
+      hands.onResults(onResults);
       return hands;
     }
 
-    function renderProbabilityBars(probs) {
+    async function onResults(results) {
+      // FPS
+      const now = performance.now();
+      const dt = now - lastFrameTime;
+      lastFrameTime = now;
+      fpsEl.textContent = "FPS: " + (1000/dt).toFixed(1);
+
+      // Resize display canvas
+      if (canvasEl.width !== mirrorCanvas.width)
+        canvasEl.width = mirrorCanvas.width;
+      if (canvasEl.height !== mirrorCanvas.height)
+        canvasEl.height = mirrorCanvas.height;
+
+      // Draw mirrored frame to output canvas (user sees mirror)
+      ctx.drawImage(mirrorCanvas, 0, 0);
+
+      if (!results.multiHandLandmarks ||
+          results.multiHandLandmarks.length === 0) {
+        handStatusEl.textContent = "No hand detected";
+        letterEl.textContent = "–";
+        confEl.textContent = "–";
+        return;
+      }
+
+      handStatusEl.textContent = "Hand detected";
+      const landmarks = results.multiHandLandmarks[0];
+
+      // Draw landmarks (mirrored display)
+      drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
+        color: "#ffffff", lineWidth: 2
+      });
+      drawLandmarks(ctx, landmarks, { color: "#ef4444" });
+
+      // Bounding box
+      const xs = landmarks.map(lm => lm.x * canvasEl.width);
+      const ys = landmarks.map(lm => lm.y * canvasEl.height);
+      let xmin = Math.min(...xs), xmax = Math.max(...xs);
+      let ymin = Math.min(...ys), ymax = Math.max(...ys);
+
+      const pad = 20;
+      xmin = Math.max(0, xmin - pad);
+      ymin = Math.max(0, ymin - pad);
+      xmax = Math.min(canvasEl.width,  xmax + pad);
+      ymax = Math.min(canvasEl.height, ymax + pad);
+
+      const boxW = xmax - xmin, boxH = ymax - ymin;
+
+      // Draw box
+      ctx.strokeStyle = "#22c55e";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(xmin, ymin, boxW, boxH);
+
+      if (!model) return;
+      if (now - lastPredictionTime < PRED_INTERVAL_MS) return;
+      lastPredictionTime = now;
+
+      // Crop from mirrored canvas (so model sees mirror)
+      cropCtx.drawImage(
+        mirrorCanvas,
+        xmin, ymin, boxW, boxH,
+        0, 0, IMG_SIZE, IMG_SIZE
+      );
+
+      // MODEL INPUT
+      tf.engine().startScope();
+
+      let img = tf.browser.fromPixels(cropCanvas).toFloat().div(255.0);
+      const offset = tf.tensor1d(NORM_MEAN).reshape([1,1,3]);
+      const scale  = tf.tensor1d(NORM_STD).reshape([1,1,3]);
+      img = img.sub(offset).div(scale);
+      const input = img.expandDims(0);
+
+      // Predict
+      const logits = model.execute({ "input": input });
+      const probsTensor = tf.softmax(logits);
+      const probs = probsTensor.dataSync();
+
+      // Argmax
+      let maxIdx = 0, maxVal = probs[0];
+      for (let i = 1; i < probs.length; i++) {
+        if (probs[i] > maxVal) {
+          maxVal = probs[i];
+          maxIdx = i;
+        }
+      }
+
+      letterEl.textContent = CLASS_NAMES[maxIdx];
+      confEl.textContent = (maxVal * 100).toFixed(1) + "%";
+
+      updateProbabilities(probs);
+
+      tf.engine().endScope();
+    }
+
+    function updateProbabilities(probs) {
       probContainer.innerHTML = "";
       for (let i = 0; i < CLASS_NAMES.length; i++) {
         const row = document.createElement("div");
@@ -361,6 +363,7 @@
         row.appendChild(label);
         row.appendChild(barBg);
         row.appendChild(val);
+
         probContainer.appendChild(row);
       }
     }
@@ -368,44 +371,43 @@
     async function init() {
       await loadModel();
 
-      // Start webcam
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { width: 640, height: 480 },
         audio: false
       });
       videoEl.srcObject = stream;
 
-      await new Promise(resolve => {
-        videoEl.onloadedmetadata = () => {
-          videoEl.play();
-          resolve();
-        };
-      });
+      await new Promise(res => videoEl.onloadedmetadata = res);
+      videoEl.play();
 
-      canvasEl.width = videoEl.videoWidth;
-      canvasEl.height = videoEl.videoHeight;
+      mirrorCanvas.width = videoEl.videoWidth;
+      mirrorCanvas.height = videoEl.videoHeight;
 
       const hands = setupHands();
 
-      // Use MediaPipe Camera helper to feed frames into Hands
       const camera = new Camera(videoEl, {
         onFrame: async () => {
-          await hands.send({ image: videoEl });
+          // MIRROR INPUT FRAME FOR MEDIAPIPE + MODEL
+          mirrorCtx.save();
+          mirrorCtx.scale(-1, 1);
+          mirrorCtx.drawImage(
+            videoEl,
+            -videoEl.videoWidth, 0,
+            videoEl.videoWidth, videoEl.videoHeight
+          );
+          mirrorCtx.restore();
+
+          await hands.send({ image: mirrorCanvas });
         },
         width: videoEl.videoWidth,
-        height: videoEl.videoHeight,
+        height: videoEl.videoHeight
       });
 
       camera.start();
-      handStatusEl.textContent = "Running (show a hand to the camera)";
+      handStatusEl.textContent = "Running — show your hand!";
     }
 
-    window.addEventListener("load", () => {
-      init().catch(err => {
-        console.error(err);
-        handStatusEl.textContent = "Failed to initialize (see console)";
-      });
-    });
+    window.onload = () => init();
   </script>
 </body>
 </html>
