@@ -251,4 +251,4 @@
 
 ## Selected Projects
 
-<iframe src="https://www.desmos.com/3d/gfo5gsitrw" width="800" height="600"></iframe>
+<!-- <iframe src="https://www.desmos.com/3d/gfo5gsitrw" width="800" height="600"></iframe> -->
