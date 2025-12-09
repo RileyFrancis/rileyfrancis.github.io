@@ -52,7 +52,7 @@
       <span class="date">Aug 2023 – Expected May 2027</span>
     </div>
   </div>
-  <div class="details">Honors Program, Honors Scholar, COE Dean’s List, CLAS Dean’s List<br>GPA: 3.921 / 4.000</div>
+  <div class="details">Honors Program, Honors Scholar, CoE Dean’s List, CLAS Dean’s List<br>GPA: 3.921 / 4.000</div>
 </div>
 
 <div class="section">
