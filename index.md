@@ -96,7 +96,11 @@ title: Home
 <div class="section">
   <div class="line">
     <div class="left">
-      <strong>Reinforcement Learning on Autonomous Robots Inside Meta’s Habitat-Lab</strong>
+      <strong>
+          <a href="{{ 'assets/Reinforcement_Learning_Methods_for_Training_Simulated_Autonomous_Robots_Inside_Habitat-Lab.pdf' | relative_url }}" target="_blank">
+            Reinforcement Learning on Autonomous Robots Inside Meta’s Habitat-Lab
+          </a>
+        </strong>
     </div>
     <div class="right">
       Storrs, Connecticut  
@@ -135,32 +139,49 @@ title: Home
   <div class="details">Produced sparse, model-level explanations demonstrating key structural influences (paper available upon request).<br>Mentor: Dr. Chunjiang Zhu</div>
 </div>
 
-<div class="section">
-  <div class="line">
-    <div class="left">
-      <strong>Wagner-Fischer Spellcheck Algorithm Video</strong>
+  <div class="section">
+    <div class="line">
+      <div class="left">
+        <strong>
+          <a href="https://www.youtube.com/watch?v=8t5MYJe-oW8" target="_blank" rel="noopener noreferrer">
+            Wagner-Fischer Spellcheck Algorithm Video
+          </a>
+        </strong>
+      </div>
+      <div class="right">
+        Storrs, Connecticut  
+        <span class="date">Aug 2024 – Dec 2024</span>
+      </div>
     </div>
-    <div class="right">
-      Storrs, Connecticut  
-      <span class="date">Aug 2024 – Dec 2024</span>
+    <div class="details">
+      <em>Created an educational video explaining the Wagner-Fischer algorithm using Manim.</em>
     </div>
   </div>
-  <div class="details"><em>Created an educational video explaining the Wagner-Fischer algorithm using Manim.</em></div>
-</div>
 
-<div class="section">
-  <div class="line">
-    <div class="left">
-      <strong>Making Lane Detection Efficient for Autonomous Model Cars</strong>
+
+  <div class="section">
+    <div class="line">
+      <div class="left">
+        <strong>
+          <a href="{{ 'assets/Making_Lane_Detection_Efficient_for_Autonomous_Model_Cars.pdf' | relative_url }}" target="_blank">
+            Making Lane Detection Efficient for Autonomous Model Cars
+          </a>
+        </strong>
+      </div>
+      <div class="right">
+        Storrs, Connecticut  
+        <span class="date">Feb 2021 – Jan 2023</span>
+      </div>
     </div>
-    <div class="right">
-      Storrs, Connecticut  
-      <span class="date">Feb 2021 – Jan 2023</span>
+    <div class="details">
+      <em>
+        Built and programmed autonomous model vehicles using AI and computer vision; presented work at IEEE/ACM ISLPED.
+      </em>
+    </div>
+    <div class="details">
+      Mentors: Dr. Jinbo Bi, Dr. Shengli Zhou, Dr. Caiwen Ding, Dr. Fei Miao
     </div>
   </div>
-  <div class="details"><em>Built and programmed autonomous model vehicles using AI and computer vision; presented work at IEEE/ACM ISLPED.</em></div>
-  <div class="details">Mentors: Dr. Jinbo Bi, Dr. Shengli Zhou, Dr. Caiwen Ding, Dr. Fei Miao</div>
-</div>
 
 ---
 
@@ -254,7 +275,3 @@ title: Home
 </div>
 
 ---
-
-## Selected Projects
-
-<!-- <iframe src="https://www.desmos.com/3d/gfo5gsitrw" width="800" height="600"></iframe> -->
