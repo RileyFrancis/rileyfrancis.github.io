@@ -17,13 +17,7 @@
   <body>
     {% include nav.html %}
 
-    <div class="cube-layer">
-      <svg class="cube-svg" viewBox="-50 -50 100 100" data-speed="0.2"
-          style="top: 20%; left: 5%;"></svg>
-
-      <svg class="cube-svg" viewBox="-50 -50 100 100" data-speed="0.35"
-          style="top: 65%; right: 4%;"></svg>
-    </div>
+    <div class="cube-layer"></div>
 
     <div class="wrapper">
       <header>
@@ -75,62 +69,148 @@
 
     <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
 
-<script>
-const cubes = document.querySelectorAll('.cube-svg');
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  let layer = document.getElementById("cube-layer");
+  if (!layer) {
+    layer = document.createElement("div");
+    layer.id = "cube-layer";
+    layer.className = "cube-layer";
+    document.body.appendChild(layer);
+  }
 
-function project([x,y,z]) {
-  const d = 200;
-  const scale = d / (d + z);
-  return [x * scale, y * scale];
-}
+  // ---------- CONFIG ----------
+  const CUBE_COUNT = 50;         // <-- bump this up (30/40) if you want
+  const PAGE_SPREAD = 10000;      // virtual vertical spread in px (bigger = more spread)
+  const EDGE_OVERLAP_MIN = -3;   // % (negative = overlap offscreen)
+  const EDGE_OVERLAP_MAX = 6;    // %
 
-function cubeLines(rotX, rotY) {
-  const s = 20;
-  const pts = [
-    [-s,-s,-s], [ s,-s,-s], [ s, s,-s], [-s, s,-s],
-    [-s,-s, s], [ s,-s, s], [ s, s, s], [-s, s, s]
-  ];
+  const SPEED_MIN = 0;
+  const SPEED_MAX = 0.5;
 
-  const rx = a => ([x,y,z]) => [x, y*Math.cos(a)-z*Math.sin(a), y*Math.sin(a)+z*Math.cos(a)];
-  const ry = a => ([x,y,z]) => [x*Math.cos(a)+z*Math.sin(a), y, -x*Math.sin(a)+z*Math.cos(a)];
+  const SIZE_MIN = 30;           // px
+  const SIZE_MAX = 100;           // px
 
-  const p = pts.map(ry(rotY)).map(rx(rotX)).map(project);
+  // Color range (tweak these two)
+  const COLOR_A = [107, 188, 255]; // light blue
+  const COLOR_B = [42, 163, 10];  // deeper blue
 
-  return [
-    [0,1],[1,2],[2,3],[3,0],
-    [4,5],[5,6],[6,7],[7,4],
-    [0,4],[1,5],[2,6],[3,7]
-  ].map(([a,b]) => [p[a],p[b]]);
-}
+  const cubes = [];
 
-let y = window.scrollY;
-let ty = y;
-let v = 0;
+  function lerp(a, b, t) { return a + (b - a) * t; }
 
-window.addEventListener('scroll', () => ty = window.scrollY);
+  function randomColor() {
+    const t = Math.random();
+    const r = Math.round(lerp(COLOR_A[0], COLOR_B[0], t));
+    const g = Math.round(lerp(COLOR_A[1], COLOR_B[1], t));
+    const b = Math.round(lerp(COLOR_A[2], COLOR_B[2], t));
+    return `rgb(${r}, ${g}, ${b})`;
+  }
 
-function animate() {
-  v += (ty - y) * 0.07;
-  v *= 0.85;
-  y += v;
+  // ---------- 3D cube wireframe math ----------
+  function project([x,y,z]) {
+    const d = 200;
+    const s = d / (d + z);
+    return [x * s, y * s];
+  }
 
-  cubes.forEach((svg, i) => {
-    const speed = parseFloat(svg.dataset.speed);
-    const r = y * 0.002 + i;
+  function cubeLines(rx, ry) {
+    const s = 20;
+    const pts = [
+      [-s,-s,-s], [ s,-s,-s], [ s, s,-s], [-s, s,-s],
+      [-s,-s, s], [ s,-s, s], [ s, s, s], [-s, s, s]
+    ];
 
-    const lines = cubeLines(r, r * 0.8);
-    svg.innerHTML = lines.map(
-      ([[x1,y1],[x2,y2]]) =>
-        `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`
-    ).join('');
+    const rotX = a => ([x,y,z]) =>
+      [x, y*Math.cos(a)-z*Math.sin(a), y*Math.sin(a)+z*Math.cos(a)];
+    const rotY = a => ([x,y,z]) =>
+      [x*Math.cos(a)+z*Math.sin(a), y, -x*Math.sin(a)+z*Math.cos(a)];
 
-    svg.style.transform = `translateY(${y * speed}px)`;
+    const p = pts.map(rotY(ry)).map(rotX(rx)).map(project);
+
+    return [
+      [0,1],[1,2],[2,3],[3,0],
+      [4,5],[5,6],[6,7],[7,4],
+      [0,4],[1,5],[2,6],[3,7]
+    ].map(([a,b]) => [p[a],p[b]]);
+  }
+
+  // ---------- Build cubes ONCE ----------
+  for (let i = 0; i < CUBE_COUNT; i++) {
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.classList.add("cube-svg");
+    svg.setAttribute("viewBox", "-50 -50 100 100");
+
+    const side = (i % 2 === 0) ? "left" : "right";
+    const edgeOffset = lerp(EDGE_OVERLAP_MIN, EDGE_OVERLAP_MAX, Math.random());
+    svg.style[side] = `${edgeOffset}%`;
+
+    const speed = lerp(SPEED_MIN, SPEED_MAX, Math.random());
+    const t = (speed - SPEED_MIN) / (SPEED_MAX - SPEED_MIN);
+    const size = lerp(SIZE_MIN, SIZE_MAX, t);
+
+    svg.style.width = `${size}px`;
+    svg.style.height = `${size}px`;
+
+    // baseTop spreads cubes across a "virtual page height"
+    const baseTop = (i / (CUBE_COUNT - 1)) * PAGE_SPREAD;
+    const jitter = (Math.random() - 0.5) * 220; // px jitter
+    const top = baseTop + jitter;
+
+    // We store "top in px" and convert to % of viewport at render-time
+    // so it behaves consistently on different screen sizes.
+    svg.style.top = `0px`;
+
+    layer.appendChild(svg);
+
+    cubes.push({
+      svg,
+      speed,
+      size,
+      color: randomColor(),
+      rotSeed: Math.random() * Math.PI * 2,
+      baseTopPx: top
+    });
+  }
+
+  // ---------- Scroll syrup ----------
+  let y = window.scrollY;
+  let ty = y;
+  let v = 0;
+
+  window.addEventListener("scroll", () => {
+    ty = window.scrollY;
   });
 
-  requestAnimationFrame(animate);
-}
+  function animate() {
+    v += (ty - y) * 0.01;
+    v *= 0.85;
+    y += v;
 
-animate();
+    const vh = window.innerHeight;
+
+    cubes.forEach((c, i) => {
+      const r = y * 0.002 + c.rotSeed;
+      const lines = cubeLines(r, r * 0.8);
+
+      c.svg.innerHTML = lines.map(
+        ([[x1,y1],[x2,y2]]) =>
+          `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c.color}"/>`
+      ).join("");
+
+      // Place cubes based on a virtual page Y, then apply parallax opposite scroll
+      const baseTopInViewportPx = (c.baseTopPx - y) * 0.18; // maps spread to viewport motion
+      const parallax = -y * c.speed;
+
+      c.svg.style.transform = `translateY(${parallax}px)`;
+      c.svg.style.top = `${(vh * 0.15) + baseTopInViewportPx}px`;
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+});
 </script>
 
 

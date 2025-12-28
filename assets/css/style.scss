@@ -177,11 +177,12 @@ section ol {
   width: 52px;
   height: 52px;
   overflow: visible;
-  opacity: 0.22;
+  opacity: 0.4;
 }
 
 .cube-svg line {
-  stroke: #6bbcff;
-  stroke-width: 2;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
