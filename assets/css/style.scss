@@ -9,19 +9,31 @@ body {
   padding: 0;
 }
 
-/* Make the overall page wider */
-.wrapper {
-  max-width: 1200px; /* default is ~960px */
+
+/* ===== Course list styling ===== */
+
+.course-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  margin-left: 1.25rem;   /* aligns with normal text indent */
+  margin-bottom: 0.35rem;
 }
 
-/* Slightly narrow the left sidebar */
-header {
-  width: 280px; /* default ~300px */
+.course-left {
+  flex: 1;
 }
 
-/* Give the main content more horizontal breathing room */
-section {
-  padding-left: 2.5rem;
+.course-left strong {
+  margin-right: 0.4rem;
+}
+
+.course-right {
+  text-align: right;
+  min-width: 3rem;
+  font-weight: 500;
+  padding-right: 3.5rem;
 }
 
 
@@ -65,6 +77,7 @@ section {
 
 section h3 {
   margin-left: 0.75rem;   /* small indent for ### */
+  margin-top: 2.5rem;
 }
 
 section p,
