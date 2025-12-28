@@ -178,6 +178,7 @@ section ol {
   height: 52px;
   overflow: visible;
   opacity: 0.4;
+  pointer-events: none;
 }
 
 .cube-svg line {
@@ -185,4 +186,10 @@ section ol {
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
+}
+
+@media (max-width: 900px) {
+  .cube-layer {
+    display: none !important;
+  }
 }
