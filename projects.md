@@ -5,17 +5,11 @@ title: Projects
 
 # Projects
 
-Welcome! Here are some of the technical projects I’ve worked on.
+<div class="under-construction">
+  <h2>🚧 Projects Page Under Construction 🚧</h2>
+  <p>
+    I’m currently organizing and polishing my projects.<br>
+    Please check back soon!
+  </p>
+</div>
 
----
-
-## ASL Letter Classifier (Browser Demo)
-
-This is a real-time ASL letter classifier built using a CNN, MediaPipe Hands, and TensorFlow.js.  
-It runs **fully in your browser** and performs live predictions using your webcam.
-
-👉 **[Launch ASL Demo](./asl-demo.html)**
-
----
-
-More projects coming soon!

@@ -12,8 +12,18 @@
     <![endif]-->
     {% include head-custom.html %}
   </head>
+
+  
   <body>
     {% include nav.html %}
+
+    <div class="cube-layer">
+      <svg class="cube-svg" viewBox="-50 -50 100 100" data-speed="0.2"
+          style="top: 20%; left: 5%;"></svg>
+
+      <svg class="cube-svg" viewBox="-50 -50 100 100" data-speed="0.35"
+          style="top: 65%; right: 4%;"></svg>
+    </div>
 
     <div class="wrapper">
       <header>
@@ -64,5 +74,67 @@
     </div>
 
     <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
+
+<script>
+const cubes = document.querySelectorAll('.cube-svg');
+
+function project([x,y,z]) {
+  const d = 200;
+  const scale = d / (d + z);
+  return [x * scale, y * scale];
+}
+
+function cubeLines(rotX, rotY) {
+  const s = 20;
+  const pts = [
+    [-s,-s,-s], [ s,-s,-s], [ s, s,-s], [-s, s,-s],
+    [-s,-s, s], [ s,-s, s], [ s, s, s], [-s, s, s]
+  ];
+
+  const rx = a => ([x,y,z]) => [x, y*Math.cos(a)-z*Math.sin(a), y*Math.sin(a)+z*Math.cos(a)];
+  const ry = a => ([x,y,z]) => [x*Math.cos(a)+z*Math.sin(a), y, -x*Math.sin(a)+z*Math.cos(a)];
+
+  const p = pts.map(ry(rotY)).map(rx(rotX)).map(project);
+
+  return [
+    [0,1],[1,2],[2,3],[3,0],
+    [4,5],[5,6],[6,7],[7,4],
+    [0,4],[1,5],[2,6],[3,7]
+  ].map(([a,b]) => [p[a],p[b]]);
+}
+
+let y = window.scrollY;
+let ty = y;
+let v = 0;
+
+window.addEventListener('scroll', () => ty = window.scrollY);
+
+function animate() {
+  v += (ty - y) * 0.07;
+  v *= 0.85;
+  y += v;
+
+  cubes.forEach((svg, i) => {
+    const speed = parseFloat(svg.dataset.speed);
+    const r = y * 0.002 + i;
+
+    const lines = cubeLines(r, r * 0.8);
+    svg.innerHTML = lines.map(
+      ([[x1,y1],[x2,y2]]) =>
+        `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`
+    ).join('');
+
+    svg.style.transform = `translateY(${y * speed}px)`;
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+
   </body>
 </html>
+
+

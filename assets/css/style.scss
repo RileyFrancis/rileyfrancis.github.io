@@ -139,3 +139,49 @@ section ol {
 .top-banner-links a.active {
   background-color: rgba(255, 255, 255, 0.3);
 }
+
+
+
+.under-construction {
+  text-align: center;
+  margin: 4em auto;
+  padding: 2em;
+  max-width: 600px;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  color: #555;
+}
+
+.under-construction h2 {
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+
+.under-construction p {
+  font-size: 1.05em;
+  line-height: 1.5;
+}
+
+
+
+/* ===== Parallax Background Shapes ===== */
+.cube-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0; /* IMPORTANT: not negative */
+}
+
+.cube-svg {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  overflow: visible;
+  opacity: 0.22;
+}
+
+.cube-svg line {
+  stroke: #6bbcff;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
