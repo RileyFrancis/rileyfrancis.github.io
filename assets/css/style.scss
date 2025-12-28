@@ -9,6 +9,23 @@ body {
   padding: 0;
 }
 
+/* Make the overall page wider */
+.wrapper {
+  max-width: 1200px; /* default is ~960px */
+}
+
+/* Slightly narrow the left sidebar */
+header {
+  width: 280px; /* default ~300px */
+}
+
+/* Give the main content more horizontal breathing room */
+section {
+  padding-left: 2.5rem;
+}
+
+
+
 
 /* Shared heading layout */
 .school,
