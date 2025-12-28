@@ -2,3 +2,110 @@
 ---
 
 @import "jekyll-theme-minimal";
+
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Shared heading layout */
+.school,
+.school2 {
+  position: relative;
+  padding-right: 8em; /* must fit the LARGEST seal box */
+}
+
+/* Fixed-size alignment box */
+.seal-box {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 5.75em;      /* visual alignment reference */
+  width: 5.75em;       /* square keeps centering consistent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Shared seal behavior */
+.seal {
+  display: block;
+}
+
+/* Individual visual scaling */
+.seal-uconn {
+  height: 5em;
+}
+
+.seal-uoe {
+  height: 5.75em;
+}
+
+/* Indentation rules for content */
+
+section h3 {
+  margin-left: 0.75rem;   /* small indent for ### */
+}
+
+section p,
+section ul,
+section ol {
+  margin-left: 1.25rem;  /* slightly larger indent for normal text */
+}
+
+
+
+/* ===== Top Banner ===== */
+
+
+.top-banner {
+  width: 100%;
+  background: linear-gradient(144deg,rgba(42, 123, 155, 1) 0%, rgba(69, 186, 163, 1) 75%, rgba(242, 234, 182, 1) 100%);
+  margin-bottom: 2rem;
+}
+
+.top-banner-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-banner-name a {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.top-banner-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.top-banner-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px; /* pill shape */
+
+  transition: background-color 0.15s ease,
+              transform 0.1s ease;
+}
+
+.top-banner-links a:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.top-banner-links a.active {
+  background-color: rgba(255, 255, 255, 0.3);
+}

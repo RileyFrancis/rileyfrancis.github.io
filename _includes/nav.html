@@ -1,0 +1,25 @@
+<nav class="top-banner">
+  <div class="top-banner-inner">
+    <div class="top-banner-name">
+      <a href="{{ '/' | relative_url }}">Riley Francis</a>
+    </div>
+
+    <div class="top-banner-links">
+      <a href="{{ '/' | relative_url }}"
+        class="{% if page.title == 'Home' %}active{% endif %}">
+        Home
+      </a>
+
+      <a href="{{ '/projects' | relative_url }}"
+        class="{% if page.title == 'Projects' %}active{% endif %}">
+        Projects
+      </a>
+
+      <a href="{{ '/courses' | relative_url }}"
+        class="{% if page.title == 'Courses' %}active{% endif %}">
+        Courses
+      </a>
+
+    </div>
+  </div>
+</nav>

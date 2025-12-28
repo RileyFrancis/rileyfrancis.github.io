@@ -4,3 +4,7 @@ description: Student, researcher, and outdoors enthusiast. Hi, I'm Riley!
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-minimal
+
+url: "https://rileyfrancis.github.io"
+baseurl: ""   
+

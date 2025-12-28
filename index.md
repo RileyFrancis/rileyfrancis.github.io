@@ -1,3 +1,9 @@
+---
+layout: default
+title: Home
+---
+
+
 <style>
 .section {
   margin-bottom: 1.5rem;
