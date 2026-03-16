@@ -15,6 +15,46 @@ title: Courses
 ### Fall 2025
 <div class="course-line">
   <div class="course-left">
+    <strong>CSE 3150</strong> C++ Essentials
+  </div>
+  <div class="course-right">
+    <strong>IP</strong>
+  </div>
+</div>
+
+### Fall 2025
+<div class="course-line">
+  <div class="course-left">
+    <strong>CSE 4940</strong> CSE Design Project II
+  </div>
+  <div class="course-right">
+    <strong>IP</strong>
+  </div>
+</div>
+
+### Fall 2025
+<div class="course-line">
+  <div class="course-left">
+    <strong>ECON 1201</strong> Principles of Microeconomics
+  </div>
+  <div class="course-right">
+    <strong>IP</strong>
+  </div>
+</div>
+
+### Fall 2025
+<div class="course-line">
+  <div class="course-left">
+    <strong>MATH 3330</strong> Elements of Topology
+  </div>
+  <div class="course-right">
+    <strong>IP</strong>
+  </div>
+</div>
+
+### Fall 2025
+<div class="course-line">
+  <div class="course-left">
     <strong>CSE 4099</strong> Independent Study in Computer Science & Engineering
   </div>
   <div class="course-right">
