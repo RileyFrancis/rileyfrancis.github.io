@@ -12,13 +12,162 @@ As a part of my senior design project, I got the opportunity to work on various 
 My senior design group members included myself, [Martha Condori](https://www.linkedin.com/in/martha-condori-032378358/), [Abeshan Javed](https://www.linkedin.com/in/abeshan-javed-6ba1a7265/), and [Marcus Maravilla](https://www.linkedin.com/in/marcus-maravilla-42210630a/), [Grace McPadden](https://www.linkedin.com/in/grace-mcpadden/). Our mentor was [Dr. Jonathan Shihao Ji](https://www.linkedin.com/in/jonathan-shihao-ji-78ab725/).
 
 
+<div class="carousel">
+  <div class="carousel-track-wrapper">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img src="assets/ITE_map_SLAM.png" alt="A SLAM map of a floor in UConn's ITE building."/>
+      </div>
+      <!-- <div class="carousel-slide">
+        <img src="your-image-2.jpg" alt="Description 2"/>
+      </div>
+      <div class="carousel-slide">
+        <video src="your-video.mp4" controls muted loop playsinline></video>
+      </div> -->
+    </div>
+  </div>
+
+  <button class="carousel-btn prev">&#8592;</button>
+  <button class="carousel-btn next">&#8594;</button>
+
+  <div class="carousel-dots"></div>
+</div>
+
+<style>
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
+}
+
+.carousel-track-wrapper {
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  background: #f9f9f9;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-slide img,
+.carousel-slide video {
+  width: 100%;
+  height: 400px;          /* adjust to taste */
+  object-fit: contain;
+  display: block;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.85);
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.carousel-btn:hover {
+  background: #fff;
+}
+
+.carousel-btn.prev { left: -20px; }
+.carousel-btn.next { right: -20px; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.carousel-dot.active {
+  background: #267CB9;   /* matches your site's link color */
+}
+</style>
+
+<script>
+(function() {
+  const track = document.querySelector('.carousel-track');
+  const slides = document.querySelectorAll('.carousel-slide');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  const dotsContainer = document.querySelector('.carousel-dots');
+
+  let current = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.classList.add('carousel-dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  function updateDots() {
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    updateDots();
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // Swipe support for mobile
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+  });
+})();
+</script>
+
+
 <div id="pdf-wrapper">
   <div id="pdf-container"></div>
 </div>
 
 <style>
 #pdf-wrapper {
-  height: 600px;           /* adjust to taste */
+  height: 800px;           /* adjust to taste */
   overflow-y: scroll;
   border-radius: 16px;
   border: 1px solid #e0e0e0;
