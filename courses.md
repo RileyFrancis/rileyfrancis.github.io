@@ -12,7 +12,7 @@ title: Courses
   </span>
 </h2>
 
-### Fall 2025
+### Spring 2026
 <div class="course-line">
   <div class="course-left">
     <strong>CSE 3150</strong> C++ Essentials
@@ -22,7 +22,6 @@ title: Courses
   </div>
 </div>
 
-### Fall 2025
 <div class="course-line">
   <div class="course-left">
     <strong>CSE 4940</strong> CSE Design Project II
@@ -32,7 +31,6 @@ title: Courses
   </div>
 </div>
 
-### Fall 2025
 <div class="course-line">
   <div class="course-left">
     <strong>ECON 1201</strong> Principles of Microeconomics
@@ -42,7 +40,6 @@ title: Courses
   </div>
 </div>
 
-### Fall 2025
 <div class="course-line">
   <div class="course-left">
     <strong>MATH 3330</strong> Elements of Topology
