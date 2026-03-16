@@ -9,17 +9,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------- CONFIG ----------
   const CUBE_COUNT = 50;
-  const PAGE_SPREAD = 10000;
+  const PAGE_SPREAD = 100000;
   const EDGE_OVERLAP_MIN = -3;
   const EDGE_OVERLAP_MAX = 6;
   const SPEED_MIN = 0;
-  const SPEED_MAX = 0.5;
+  const SPEED_MAX = 0.4;
   const SIZE_MIN = 30;
   const SIZE_MAX = 100;
   const COLOR_A = [107, 188, 255];
   const COLOR_B = [52, 163, 23];
 
-  // *** NEW: breakpoint to match your CSS ***
   const HIDE_BELOW_PX = 900;
 
   const cubes = [];
@@ -96,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", () => { ty = window.scrollY; });
 
   function animate() {
-    // *** NEW: skip all work if cubes are hidden ***
     if (window.innerWidth < HIDE_BELOW_PX) {
       requestAnimationFrame(animate);
       return;
