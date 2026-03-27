@@ -183,6 +183,15 @@ title: Home
     </div>
   </div>
 
+## Conferences
+
+<div class="section">
+  <div class="line">
+    <div class="left">Brown University SUMS Conference: Math & Games</div>
+    <div class="right"><span class="date">Mar 2026</span></div>
+  </div>
+</div>
+
 ---
 
 ## Awards & Recognition

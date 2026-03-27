@@ -4,7 +4,7 @@ title: Projects
 ---
 
 # Projects
-Take a peek at some of the things I've been working on!
+**Take a peek at some of the things I've been working on!**
 
 ## Methods for Autonomous Navigation of Legged Robots
 As a part of my senior design project, I got the opportunity to work on various methods for autonomous navigation on legged robots such as Unitree's Go2 robot. I examined methods such as SLAM, VLMaps, Reinforcement Learning, and more to compare and evaluate their performance.
@@ -174,6 +174,7 @@ My senior design group members included myself, [Martha Condori](https://www.lin
   box-shadow: -3px 11px 32px 8px rgba(0,0,0,0.25);
   padding: 1.5rem;
   background: #ECF3F6;
+  margin-bottom: 3rem;
 }
 
 /* Hide the scrollbar visually but keep it scrollable */
@@ -219,3 +220,6 @@ async function renderPDF(url, containerId) {
 
 renderPDF('{{ "assets/Reinforcement_Learning_Methods_for_Training_Simulated_Autonomous_Robots_Inside_Habitat-Lab.pdf" | relative_url }}', 'pdf-container');
 </script>
+
+
+## Training Graph Neural Networks on Brain Data
