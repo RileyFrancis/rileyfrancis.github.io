@@ -12,13 +12,16 @@ title: Courses
   </span>
 </h2>
 
+### Fall 2026
+***Software Development Intern Coop at Amazon Robotics***
+
 ### Spring 2026
 <div class="course-line">
   <div class="course-left">
     <strong>CSE 3150</strong> C++ Essentials
   </div>
   <div class="course-right">
-    <strong>IP</strong>
+    <strong>A</strong>
   </div>
 </div>
 
@@ -27,7 +30,7 @@ title: Courses
     <strong>CSE 4940</strong> CSE Design Project II
   </div>
   <div class="course-right">
-    <strong>IP</strong>
+    <strong>A</strong>
   </div>
 </div>
 
@@ -36,7 +39,7 @@ title: Courses
     <strong>ECON 1201</strong> Principles of Microeconomics
   </div>
   <div class="course-right">
-    <strong>IP</strong>
+    <strong>A</strong>
   </div>
 </div>
 
@@ -45,7 +48,7 @@ title: Courses
     <strong>MATH 3330</strong> Elements of Topology
   </div>
   <div class="course-right">
-    <strong>IP</strong>
+    <strong>A</strong>
   </div>
 </div>
 
