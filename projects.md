@@ -222,4 +222,4 @@ renderPDF('{{ "assets/Reinforcement_Learning_Methods_for_Training_Simulated_Auto
 </script>
 
 
-## Training Graph Neural Networks on Brain Data
+<!-- ## Training Graph Neural Networks on Brain Data -->
