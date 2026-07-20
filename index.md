@@ -1,49 +1,46 @@
 ---
 layout: default
 title: Home
+custom_css: |
+  .section {
+    margin-bottom: 1.5rem;
+  }
+  .line {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.25rem;
+  }
+  .left {
+    flex: 1;
+  }
+  .left strong {
+    display: block;
+    font-weight: 600;
+  }
+  .subrole {
+    color: #555;
+    font-style: italic;
+    margin-top: 0.1rem;
+    display: block;
+  }
+  .right {
+    text-align: right;
+    min-width: 220px;
+    margin-left: 1rem;
+    line-height: 1.3;
+  }
+  .right .date {
+    display: block;
+    font-size: 0.9em;
+    color: #444;
+    margin-top: 0.15rem;
+  }
+  .details {
+    margin-left: 1rem;
+    font-size: 0.95em;
+  }
 ---
-
-
-<style>
-.section {
-  margin-bottom: 1.5rem;
-}
-.line {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.25rem;
-}
-.left {
-  flex: 1;
-}
-.left strong {
-  display: block;
-  font-weight: 600;
-}
-.subrole {
-  color: #555;
-  font-style: italic;
-  margin-top: 0.1rem;
-  display: block;
-}
-.right {
-  text-align: right;
-  min-width: 220px;
-  margin-left: 1rem;
-  line-height: 1.3;
-}
-.right .date {
-  display: block;
-  font-size: 0.9em;
-  color: #444;
-  margin-top: 0.15rem;
-}
-.details {
-  margin-left: 1rem;
-  font-size: 0.95em;
-}
-</style>
 
 ## Education
 
