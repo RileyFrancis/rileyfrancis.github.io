@@ -1,0 +1,14 @@
+// Site header content (title, profile photo, tagline) in _layouts/default.html.
+// The positioning of the <header> box itself (the fixed 280px sidebar and its
+// responsive collapse) lives in jekyll-theme-minimal.scss; this only covers the
+// centered content, which the theme otherwise centers on narrow screens only.
+
+.site-header {
+  text-align: center;
+}
+
+.site-header .profile-photo {
+  max-width: 280px;
+  margin: 0 auto 1rem auto;
+  display: block;
+}

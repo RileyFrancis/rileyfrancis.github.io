@@ -17,14 +17,11 @@ My senior design group members included myself, [Martha Condori](https://www.lin
   <div class="carousel-track-wrapper">
     <div class="carousel-track">
       <div class="carousel-slide">
-        <img src="{{ '/assets/ITE_map_SLAM.png' | relative_url }}" alt="A SLAM map of a floor in UConn's ITE building."/>
-      </div>
-      <!-- <div class="carousel-slide">
-        <img src="your-image-2.jpg" alt="Description 2"/>
+        <img src="{{ '/assets/img/ITE_map_SLAM.png' | relative_url }}" alt="A SLAM map of a floor in UConn's ITE building."/>
       </div>
       <div class="carousel-slide">
-        <video src="your-video.mp4" controls muted loop playsinline></video>
-      </div> -->
+        <img src="{{ '/assets/img/sdp_team_photo.jpeg' | relative_url }}" alt="A SLAM map of a floor in UConn's ITE building."/>
+      </div>
     </div>
   </div>
 
@@ -33,89 +30,6 @@ My senior design group members included myself, [Martha Condori](https://www.lin
 
   <div class="carousel-dots"></div>
 </div>
-
-<style>
-.carousel {
-  position: relative;
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto 2rem auto;
-}
-
-.carousel-track-wrapper {
-  overflow: hidden;
-  border-radius: 16px;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  background: #f9f9f9;
-}
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.4s ease;
-}
-
-.carousel-slide {
-  min-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.carousel-slide img,
-.carousel-slide video {
-  width: 100%;
-  height: 400px;          /* adjust to taste */
-  object-fit: contain;
-  display: block;
-}
-
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.85);
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: background 0.2s;
-  z-index: 10;
-}
-
-.carousel-btn:hover {
-  background: #fff;
-}
-
-.carousel-btn.prev { left: -20px; }
-.carousel-btn.next { right: -20px; }
-
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.carousel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #ccc;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.carousel-dot.active {
-  background: #267CB9;   /* matches your site's link color */
-}
-</style>
 
 <script>
 (function() {
@@ -165,31 +79,6 @@ My senior design group members included myself, [Martha Condori](https://www.lin
 <div id="pdf-wrapper">
   <div id="pdf-container"></div>
 </div>
-
-<style>
-#pdf-wrapper {
-  height: 800px;           /* adjust to taste */
-  overflow-y: scroll;
-  border-radius: 16px;
-  border: 1px solid #e0e0e0;
-  box-shadow: -3px 11px 32px 8px rgba(0,0,0,0.25);
-  padding: 1.5rem;
-  background: #ECF3F6;
-  margin-bottom: 3rem;
-}
-
-/* Hide the scrollbar visually but keep it scrollable */
-#pdf-wrapper::-webkit-scrollbar {
-  width: 6px;
-}
-#pdf-wrapper::-webkit-scrollbar-track {
-  background: transparent;
-}
-#pdf-wrapper::-webkit-scrollbar-thumb {
-  background: #cccccc;
-  border-radius: 3px;
-}
-</style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
   integrity="sha512-q+4liFwdPC/bNdhUpZx6aXDx/h77yEQtn4I1slHydcbZK34nLaR3cAeYSJshoxIOq3mjEf7xJE8YWIUHMn+oCQ=="

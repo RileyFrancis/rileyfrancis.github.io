@@ -1,0 +1,26 @@
+// Scrollable container for the pdf.js-rendered research papers
+// on the projects page (projects.md). Rendering lives in the inline
+// <script> on that page.
+
+#pdf-wrapper {
+  height: 800px;           /* adjust to taste */
+  overflow-y: scroll;
+  border-radius: 16px;
+  border: 1px solid #e0e0e0;
+  box-shadow: -3px 11px 32px 8px rgba(0,0,0,0.25);
+  padding: 1.5rem;
+  background: #ECF3F6;
+  margin-bottom: 3rem;
+}
+
+/* Hide the scrollbar visually but keep it scrollable */
+#pdf-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+#pdf-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+#pdf-wrapper::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 3px;
+}

@@ -3,6 +3,12 @@
 
 @import "jekyll-theme-minimal";
 
+// Page-specific styles (moved out of the inline <style> blocks in the .md pages)
+@import "header";     // site header (title, photo, tagline) in the layout
+@import "resume";     // home page (index.md) resume entries
+@import "carousel";   // projects page image carousel
+@import "pdf-viewer"; // projects page pdf.js viewer
+
 
 body {
   margin: 0;
