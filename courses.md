@@ -9,7 +9,7 @@ permalink: /courses/
 <h2 class="school">
   University of Connecticut
   <span class="seal-box">
-    <img src="assets/img/uconn_seal.png" class="seal seal-uconn" alt="University of Connecticut seal">
+    <img src="{{ '/assets/img/uconn_seal.png' | relative_url }}" class="seal seal-uconn" alt="University of Connecticut seal">
   </span>
 </h2>
 
@@ -404,7 +404,7 @@ permalink: /courses/
 <h2 class="school2">
   <t id="uoe">University of Edinburgh</t>
   <span class="seal-box">
-    <img src="assets/img/uoe_seal.png" class="seal seal-uoe" alt="University of Edinburgh seal">
+    <img src="{{ '/assets/img/uoe_seal.png' | relative_url }}" class="seal seal-uoe" alt="University of Edinburgh seal">
   </span>
 </h2>
 

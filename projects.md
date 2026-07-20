@@ -17,7 +17,7 @@ My senior design group members included myself, [Martha Condori](https://www.lin
   <div class="carousel-track-wrapper">
     <div class="carousel-track">
       <div class="carousel-slide">
-        <img src="assets/ITE_map_SLAM.png" alt="A SLAM map of a floor in UConn's ITE building."/>
+        <img src="{{ '/assets/ITE_map_SLAM.png' | relative_url }}" alt="A SLAM map of a floor in UConn's ITE building."/>
       </div>
       <!-- <div class="carousel-slide">
         <img src="your-image-2.jpg" alt="Description 2"/>
@@ -221,7 +221,7 @@ async function renderPDF(url, containerId) {
   }
 }
 
-renderPDF('{{ "assets/Reinforcement_Learning_Methods_for_Training_Simulated_Autonomous_Robots_Inside_Habitat-Lab.pdf" | relative_url }}', 'pdf-container');
+renderPDF('{{ "/assets/Reinforcement_Learning_Methods_for_Training_Simulated_Autonomous_Robots_Inside_Habitat-Lab.pdf" | relative_url }}', 'pdf-container');
 </script>
 
 
