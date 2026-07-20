@@ -31,87 +31,20 @@ My senior design group members included myself, [Martha Condori](https://www.lin
   <div class="carousel-dots"></div>
 </div>
 
-<script>
-(function() {
-  const track = document.querySelector('.carousel-track');
-  const slides = document.querySelectorAll('.carousel-slide');
-  const prevBtn = document.querySelector('.carousel-btn.prev');
-  const nextBtn = document.querySelector('.carousel-btn.next');
-  const dotsContainer = document.querySelector('.carousel-dots');
+<script src="{{ '/assets/js/carousel.js' | relative_url }}"></script>
 
-  let current = 0;
-
-  // Build dots
-  slides.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.classList.add('carousel-dot');
-    if (i === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => goTo(i));
-    dotsContainer.appendChild(dot);
-  });
-
-  function updateDots() {
-    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === current);
-    });
-  }
-
-  function goTo(index) {
-    current = (index + slides.length) % slides.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    updateDots();
-  }
-
-  prevBtn.addEventListener('click', () => goTo(current - 1));
-  nextBtn.addEventListener('click', () => goTo(current + 1));
-
-  // Swipe support for mobile
-  let startX = 0;
-  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
-  track.addEventListener('touchend', e => {
-    const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
-  });
-})();
-</script>
-
-
-<div id="pdf-wrapper">
-  <div id="pdf-container"></div>
+<div class="pdf-wrapper">
+  <div class="pdf-container" data-pdf-url="{{ '/assets/SDP_Poster.pdf' | relative_url }}"></div>
 </div>
+<div class="pdf-wrapper">
+  <div class="pdf-container" data-pdf-url="{{ '/assets/Reinforcement_Learning_Methods_for_Training_Simulated_Autonomous_Robots_Inside_Habitat-Lab.pdf' | relative_url }}"></div>
+</div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
   integrity="sha512-q+4liFwdPC/bNdhUpZx6aXDx/h77yEQtn4I1slHydcbZK34nLaR3cAeYSJshoxIOq3mjEf7xJE8YWIUHMn+oCQ=="
   crossorigin="anonymous"></script>
-<script>
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-  'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-async function renderPDF(url, containerId) {
-  const container = document.getElementById(containerId);
-  const pdf = await pdfjsLib.getDocument(url).promise;
-
-  for (let i = 1; i <= pdf.numPages; i++) {
-    const page = await pdf.getPage(i);
-    const viewport = page.getViewport({ scale: 1.5 });
-
-    const canvas = document.createElement('canvas');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    canvas.style.display = 'block';
-    canvas.style.width = '100%';   // scales to container width
-    canvas.style.marginBottom = '1rem';
-
-    container.appendChild(canvas);
-    await page.render({
-      canvasContext: canvas.getContext('2d'),
-      viewport
-    }).promise;
-  }
-}
-
-renderPDF('{{ "/assets/Reinforcement_Learning_Methods_for_Training_Simulated_Autonomous_Robots_Inside_Habitat-Lab.pdf" | relative_url }}', 'pdf-container');
-</script>
+<script src="{{ '/assets/js/pdf-viewer.js' | relative_url }}"></script>
 
 
 <!-- ## Training Graph Neural Networks on Brain Data -->

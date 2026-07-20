@@ -17,7 +17,7 @@ bundle exec rubocop -D --config .rubocop.yml   # lint Ruby (gemspec, scripts)
 bundle exec script/validate-html               # W3C-validate _site/index.html (requires a prior build)
 ```
 
-There is no JS test suite or bundler — `assets/js/*.js` and inline `<script>` blocks in the `.md`/`.html` pages are plain scripts loaded directly, no build step.
+There is no JS test suite or bundler — `assets/js/*.js` (and the inline `<script>` in the standalone `asl-demo.html`) are plain scripts loaded directly, no build step.
 
 CI (`.github/workflows/ci.yaml`) runs `script/bootstrap` then `script/cibuild` on every push/PR.
 
@@ -25,7 +25,7 @@ CI (`.github/workflows/ci.yaml`) runs `script/bootstrap` then `script/cibuild` o
 
 Standard Jekyll layout, minimal customization:
 
-- **Content pages** are top-level `.md` files with YAML front matter (`layout`, `title`) — `index.md` (resume/CV, home page), `projects.md`, `courses.md`. `projects.md` still embeds its own `<script>` blocks directly in the Markdown (an image carousel and a `pdf.js`-based PDF viewer that renders the PDFs in `assets/`); their styling has been extracted to `_sass/` partials. Page CSS lives in `_sass/`, not inline in the Markdown.
+- **Content pages** are top-level `.md` files with YAML front matter (`layout`, `title`) — `index.md` (resume/CV, home page), `projects.md`, `courses.md`. Page-specific CSS and JS have been extracted out of the Markdown: `projects.md`'s image carousel and `pdf.js`-based PDF viewer load `assets/js/carousel.js` and `assets/js/pdf-viewer.js` via `<script src>` tags (the PDF's URL is passed through a `data-pdf-url` attribute on `#pdf-container` so the Liquid `relative_url` filter still resolves it), with styling in `_sass/` partials. The only third-party inline reference left in the Markdown is the pdf.js CDN `<script src>` (which carries an SRI hash and must load before `pdf-viewer.js`).
 - **`_layouts/default.html`** wraps all pages; includes `nav.html`, `footer.html`, and the theme's head partials from `_includes/`.
 - **`_sass/jekyll-theme-minimal.scss`** (plus `fonts.scss`, `footer.scss`, `rouge-github.scss`) is the theme stylesheet; `assets/css/style.scss` imports it and then the site-specific partials (`resume.scss` for the home-page resume entries, `carousel.scss` and `pdf-viewer.scss` for the projects page). All page styling compiles into the single `assets/css/style.css`.
 - **`_config.yml`** holds site metadata (title, description, GA id, theme name) — this is the source of truth for site-wide variables referenced as `site.*` in templates.
