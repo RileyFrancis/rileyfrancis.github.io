@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Projects
+permalink: /projects/
 ---
 
 # Projects
@@ -190,7 +191,9 @@ My senior design group members included myself, [Martha Condori](https://www.lin
 }
 </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
+  integrity="sha512-q+4liFwdPC/bNdhUpZx6aXDx/h77yEQtn4I1slHydcbZK34nLaR3cAeYSJshoxIOq3mjEf7xJE8YWIUHMn+oCQ=="
+  crossorigin="anonymous"></script>
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
