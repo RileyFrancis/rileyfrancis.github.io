@@ -35,5 +35,11 @@
     }
   }
 
-  containers.forEach(c => renderPDF(c.dataset.pdfUrl, c));
+  containers.forEach(c => {
+    // Clicking a viewer opens the full PDF in a new tab.
+    c.addEventListener('click', () => {
+      window.open(c.dataset.pdfUrl, '_blank', 'noopener');
+    });
+    renderPDF(c.dataset.pdfUrl, c);
+  });
 })();
