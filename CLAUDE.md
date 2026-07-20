@@ -14,7 +14,7 @@ bundle exec jekyll serve   # local dev server at localhost:4000, live rebuild
 bundle exec jekyll build   # build to _site/
 script/cibuild           # full CI check: build, htmlproofer, rubocop, validate-html, gem build
 bundle exec rubocop -D --config .rubocop.yml   # lint Ruby (gemspec, scripts)
-bundle exec script/validate-html               # W3C-validate _site/index.html and the compiled CSS (requires a prior build)
+bundle exec script/validate-html               # W3C-validate _site/index.html (requires a prior build)
 ```
 
 There is no JS test suite or bundler — `assets/js/*.js` and inline `<script>` blocks in the `.md`/`.html` pages are plain scripts loaded directly, no build step.

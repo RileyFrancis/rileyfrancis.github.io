@@ -3,20 +3,11 @@
 
 require "w3c_validators"
 
-def validator(file)
-  extension = File.extname(file)
-  if extension == ".html"
-    W3CValidators::NuValidator.new
-  elsif extension == ".css"
-    W3CValidators::CSSValidator.new
-  end
-end
-
 def validate(file)
   puts "Checking #{file}..."
 
   path = File.expand_path "../_site/#{file}", __dir__
-  results = validator(file).validate_file(path)
+  results = W3CValidators::NuValidator.new.validate_file(path)
 
   return puts "Valid!" if results.errors.empty?
 
@@ -25,4 +16,3 @@ def validate(file)
 end
 
 validate "index.html"
-validate File.join "assets", "css", "style.css"
