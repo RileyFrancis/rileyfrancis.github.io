@@ -1,0 +1,105 @@
+// Landing page (index.md, layout: home): one centered, single-screen intro.
+// The theme's fixed 280px sidebar is absent on this layout, so everything here
+// is a single centered column that just grows downward on narrow screens.
+
+.home-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // Roughly the viewport minus nav, footer, and body padding, so the intro
+  // sits optically centered on a desktop screen without ever clipping.
+  min-height: calc(100vh - 320px);
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
+.home-hero {
+  max-width: 640px;
+  text-align: center;
+}
+
+.home-photo {
+  width: 200px;
+  height: auto;
+  margin: 0 auto 1.75rem auto;
+  display: block;
+}
+
+.home-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+.home-affiliation {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin-bottom: 1.75rem;
+}
+
+// Thin gradient rule echoing the nav/footer, as a divider under the heading.
+.home-affiliation::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 3px;
+  margin: 1.5rem auto 0 auto;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(42, 123, 155, 1) 0%,
+    rgba(69, 186, 163, 1) 69%,
+    rgba(240, 255, 107, 1) 100%
+  );
+}
+
+.home-bio {
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.home-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  row-gap: 0.35rem;
+  margin-bottom: 0;
+}
+
+.home-links a {
+  padding: 0.2rem 0.9rem;
+  font-weight: 500;
+}
+
+// Hairline separators between links, standing in for the "·" bullets.
+.home-links a + a {
+  border-left: 1px solid #dcdcdc;
+}
+
+// The theme bolds links on hover, which would shift this whole row; underline
+// instead so the layout stays put.
+.home-links a:hover,
+.home-links a:focus {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 600px) {
+  .home-wrapper {
+    min-height: 0;
+    padding-top: 0.5rem;
+  }
+
+  .home-photo {
+    width: 160px;
+    margin-bottom: 1.25rem;
+  }
+
+  .home-hero h1 {
+    font-size: 2rem;
+  }
+}

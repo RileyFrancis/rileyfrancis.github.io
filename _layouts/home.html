@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% seo %}
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    {% include head-custom.html %}
+  </head>
+
+  <body class="home-page">
+    {% include nav.html %}
+
+    <div class="cube-layer"></div>
+
+    <!-- No sidebar header here: the landing page is a single centered intro.
+         Inner pages use _layouts/default.html, which keeps the sidebar. -->
+    <div class="wrapper home-wrapper">
+      <main class="home-hero">
+        {{ content }}
+      </main>
+    </div>
+
+    {% include footer.html %}
+
+    <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
+
+    <script src="{{ '/assets/js/smooth_scroll.js' | relative_url }}"></script>
+
+  </body>
+
+</html>
