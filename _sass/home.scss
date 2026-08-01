@@ -15,6 +15,7 @@
 
 .home-hero {
   max-width: 640px;
+  margin: 0 auto; // centred inside .page-panel, which is now the flex item
   text-align: center;
 }
 

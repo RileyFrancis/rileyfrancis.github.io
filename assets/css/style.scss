@@ -5,6 +5,7 @@
 
 // Page-specific styles (moved out of the inline <style> blocks in the .md pages)
 @import "header";     // site header (title, photo, tagline) in the layout
+@import "panel";      // tinted content panel wrapping every page body
 @import "home";       // landing page (index.md, layout: home)
 @import "resume";     // CV page (cv.md) resume entries
 @import "carousel";   // projects page image carousel
@@ -172,30 +173,48 @@ section ol {
 
 
 /* ===== Parallax Background Shapes ===== */
+/* Built and positioned by assets/js/cubes.js; sizes and transforms are set
+   inline per cube, so everything here is presentation only. */
 .cube-layer {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0; /* IMPORTANT: not negative */
+  z-index: 0; /* IMPORTANT: not negative — a negative layer would paint behind
+                 body's white background and disappear entirely */
+  overflow: hidden;
+  /* Isolate the layer so cube transforms can never dirty page layout. */
+  contain: layout style paint;
 }
 
 .cube-svg {
   position: absolute;
-  width: 52px;
-  height: 52px;
+  top: 0;
+  left: 0;
   overflow: visible;
   opacity: 0.4;
   pointer-events: none;
+  /* Only ever animated via transform — keep each cube on its own layer. */
+  will-change: transform;
 }
 
-.cube-svg line {
-  stroke-width: 3;
+.cube-svg path {
+  fill: none;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  /* Constant stroke weight regardless of the cube's rendered size. */
   vector-effect: non-scaling-stroke;
 }
 
+/* Belt-and-braces: cubes.js already declines to build when the gutters are too
+   narrow, which is always the case at these widths. */
 @media (max-width: 900px) {
+  .cube-layer {
+    display: none !important;
+  }
+}
+
+@media print {
   .cube-layer {
     display: none !important;
   }

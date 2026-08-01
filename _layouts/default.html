@@ -16,22 +16,24 @@
     <div class="cube-layer"></div>
 
     <div class="wrapper">
-      <header class="site-header">
-        <!-- Custom Title -->
-        <h1><a href="{{ '/' | absolute_url }}">Riley Francis</a></h1>
+      <div class="page-panel page-panel--split">
+        <header class="site-header">
+          <!-- Custom Title -->
+          <h1><a href="{{ '/' | absolute_url }}">Riley Francis</a></h1>
 
-        <!-- Custom Profile Image -->
-        <img class="profile-photo" src="{{ '/assets/img/cropped_circle_image.png' | relative_url }}" alt="Riley Francis portrait"/>
+          <!-- Custom Profile Image -->
+          <img class="profile-photo" src="{{ '/assets/img/cropped_circle_image.png' | relative_url }}" alt="Riley Francis portrait"/>
 
 
-        <!-- Description text (optional: pulled from _config.yml or set manually) -->
-        <p>{{ site.description | default: "Mathematics & Computer Science Student @ UConn" }}</p>
-        <p>Computer Science & Mathematics @ University of Connecticut</p>
-      </header>
+          <!-- Description text (optional: pulled from _config.yml or set manually) -->
+          <p>{{ site.description | default: "Mathematics & Computer Science Student @ UConn" }}</p>
+          <p>Computer Science & Mathematics @ University of Connecticut</p>
+        </header>
 
-      <section>
-        {{ content }}
-      </section>
+        <section>
+          {{ content }}
+        </section>
+      </div>
     </div>
 
     {% include footer.html %}
@@ -40,7 +42,7 @@
 
     <script src="{{ '/assets/js/smooth_scroll.js' | relative_url }}"></script>
 
-    <!-- <script src="{{ '/assets/js/cubes.js' | relative_url }}"></script> -->
+    <script src="{{ '/assets/js/cubes.js' | relative_url }}" defer></script>
 
   </body>
 

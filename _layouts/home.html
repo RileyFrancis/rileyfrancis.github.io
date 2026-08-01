@@ -18,9 +18,11 @@
     <!-- No sidebar header here: the landing page is a single centered intro.
          Inner pages use _layouts/default.html, which keeps the sidebar. -->
     <div class="wrapper home-wrapper">
-      <main class="home-hero">
-        {{ content }}
-      </main>
+      <div class="page-panel">
+        <main class="home-hero">
+          {{ content }}
+        </main>
+      </div>
     </div>
 
     {% include footer.html %}
@@ -28,6 +30,8 @@
     <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
 
     <script src="{{ '/assets/js/smooth_scroll.js' | relative_url }}"></script>
+
+    <script src="{{ '/assets/js/cubes.js' | relative_url }}" defer></script>
 
   </body>
 

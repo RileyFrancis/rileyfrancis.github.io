@@ -60,9 +60,11 @@ a:hover small {
   max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
-  /* Reserve space for cubes on wide screens */
-  padding-left: clamp(8rem, 8vw, 140px);
-  padding-right: clamp(8rem, 8vw, 140px);
+  /* Transparent gutter either side of .page-panel; cubes.js measures this box
+     and draws only outside it. Centring supplies most of the clearance on wide
+     screens, so this only needs to keep the panel off the very edge. */
+  padding-left: clamp(2.5rem, 3vw, 3rem);
+  padding-right: clamp(2.5rem, 3vw, 3rem);
 }
 
 blockquote {

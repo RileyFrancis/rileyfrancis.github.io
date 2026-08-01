@@ -1,0 +1,116 @@
+// Content panel: a tinted card holding each page's body, so the text sits on
+// its own surface and separates cleanly from the cubes drifting outside it.
+//
+// The panel fills .wrapper's content box exactly. The wrapper's own horizontal
+// padding stays transparent on purpose -- that reserved space is the gutter
+// cubes.js measures and draws into, so the panel never reaches them.
+
+$panel-bg: #f0fff0;
+// Nudged darker than the theme's #727272 / #267CB9. Not strictly required at
+// this tint (#727272 clears AA on it at 4.6:1) but it holds up if the panel is
+// ever taken to a stronger green, where #727272 drops to about 4.3:1.
+$panel-text: #4f4f4f;
+$panel-link: #1a5f8f;
+$panel-link-hover: #10456a;
+$panel-rule: rgba(20, 60, 30, 0.14);
+
+// Width reserved for the theme's pinned sidebar, plus the gap to the body text.
+$sidebar-col: 320px;
+
+.page-panel {
+  background: $panel-bg;
+  color: $panel-text;
+  border-radius: 14px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 1px 4px rgba(30, 70, 40, 0.14);
+  // Contains the theme's floats and keeps child margins from collapsing out
+  // through the panel's edges.
+  display: flow-root;
+}
+
+.page-panel a {
+  color: $panel-link;
+}
+
+.page-panel a:hover,
+.page-panel a:focus {
+  color: $panel-link-hover;
+}
+
+// The theme's near-white rules and borders disappear against the tint.
+.page-panel hr {
+  background: $panel-rule;
+}
+
+.page-panel blockquote {
+  border-left-color: $panel-rule;
+}
+
+.page-panel th,
+.page-panel td {
+  border-bottom-color: $panel-rule;
+}
+
+// ---- Two-column pages (_layouts/default.html) ----
+//
+// The theme pins <header> as a fixed 280px sidebar and floats <section> right
+// at a fixed 700px. Those total 980px, which is wider than the wrapper's
+// content box, so the two columns overlapped. Reserving a column for the
+// sidebar and letting the body take the remainder removes the overlap and
+// keeps both inside the panel at every desktop width.
+.page-panel > section {
+  float: none;
+  width: auto;
+  margin-left: $sidebar-col;
+}
+
+// Keeps the panel taller than the pinned sidebar, so a short page can't leave
+// the sidebar hanging past the panel's bottom edge.
+.page-panel--split {
+  min-height: 30rem;
+}
+
+// ---- Landing page (_layouts/home.html) ----
+//
+// One centered card rather than a full-width slab, to suit the short intro.
+.home-wrapper .page-panel {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+}
+
+// Below this width the theme drops the sidebar into the normal flow, so the
+// reserved column has to go with it.
+@media print, screen and (max-width: 1300px) {
+  .page-panel > section {
+    margin-left: 0;
+    border-top-color: $panel-rule;
+    border-bottom-color: $panel-rule;
+  }
+
+  .page-panel--split {
+    min-height: 0;
+  }
+}
+
+@media print, screen and (max-width: 480px) {
+  .page-panel {
+    padding: 1.25rem 1.1rem;
+    border-radius: 10px;
+  }
+
+  .home-wrapper .page-panel {
+    padding: 2rem 1.25rem;
+  }
+}
+
+// The tint is pure decoration; printed pages should stay on white paper.
+@media print {
+  .page-panel {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    color: inherit;
+  }
+}
