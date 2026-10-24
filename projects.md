@@ -46,5 +46,8 @@ My senior design group members included myself, [Martha Condori](https://www.lin
   crossorigin="anonymous"></script>
 <script src="{{ '/assets/js/pdf-viewer.js' | relative_url }}"></script>
 
+## Bag of Holding
+[Bag of Holding](https://bagofholding.io) is a web app I built for managing tabletop RPGs, designed around D&D 5.5e. Players get full character sheets and a grid-based inventory with weight and encumbrance tracking. Game masters can run campaigns that players join with a party code, complete with a battle map and initiative tracker, shops, and homebrew items and creatures. The source code is available on [GitHub](https://github.com/RileyFrancis/Bag-of-Holding).
+
 
 <!-- ## Training Graph Neural Networks on Brain Data -->

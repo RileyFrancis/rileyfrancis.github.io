@@ -7,6 +7,18 @@
   text-align: center;
 }
 
+// The theme pins the desktop sidebar with position: fixed, which leaves it
+// hanging in place while the page rubber-bands at its top or bottom edge.
+// Sticky keeps the same resting spot (banner + its 2rem margin + the panel's
+// 2rem padding) but moves with the page during that bounce, and stops at the
+// panel's bottom edge instead of overrunning it.
+@media screen and (min-width: 1301px) {
+  .site-header {
+    position: sticky;
+    top: calc(#{$top-banner-height} + 4rem);
+  }
+}
+
 .site-header .profile-photo {
   max-width: 280px;
   margin: 0 auto 1rem auto;

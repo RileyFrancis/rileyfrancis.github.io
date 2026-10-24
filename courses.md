@@ -14,7 +14,7 @@ permalink: /courses/
 </h2>
 
 ### Fall 2026
-***Software Development Engineer Intern Coop at Amazon Robotics***
+***Software Development Engineer Co-op at Amazon Robotics***
 
 ### Spring 2026
 <div class="course-line">

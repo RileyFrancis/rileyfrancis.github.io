@@ -1,0 +1,65 @@
+// Overscroll backdrop: what shows when the page rubber-bands past its top or
+// bottom edge (trackpad / touch bounce). The browser shifts the page content
+// but leaves fixed elements in place, so a fixed layer behind <body> is what
+// fills the gap. Its top half continues the nav banner's gradient upward and
+// its bottom half continues the footer's downward, so the bars just look
+// taller instead of tearing away from the window edge.
+
+// Mirrors the 154deg gradient shared by .top-banner and .site-footer.
+$bar-c0: rgba(42, 123, 155, 1);
+$bar-c1: rgba(69, 186, 163, 1);
+$bar-c2: rgba(240, 255, 107, 1);
+
+// Rendered height of .top-banner (0.75rem padding around 0.35rem-padded pill
+// links). Also used by header.scss to pin the sidebar where it sits at rest.
+$top-banner-height: 56px;
+$footer-height: 64px; // .site-footer's fixed height
+
+// A 154deg gradient across a short, wide bar varies almost entirely along x.
+// Along any horizontal edge of a bar of height h it is exactly a left-to-right
+// gradient whose stops are stretched by k*h, k = |cos 154deg| / sin 154deg.
+// Reproducing that edge as a horizontal gradient extends the bar seamlessly.
+$bar-k: 2.0503;
+$top-stretch: $bar-k * $top-banner-height;
+$bottom-stretch: $bar-k * $footer-height;
+
+// <html> gets its own background so <body>'s white no longer propagates to
+// the whole canvas; <body> stays white and covers the backdrop everywhere the
+// page actually is.
+html {
+  background: #fff;
+}
+
+body {
+  background: #fff;
+  min-height: 100vh;
+  // The theme still floats .site-footer (its bare `footer` rule), so without
+  // this <body> would end above the footer's top margin and let the backdrop
+  // show through that gap.
+  display: flow-root;
+}
+
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1; // above the canvas, below <body>'s background
+  pointer-events: none;
+  background:
+    // Top edge of the banner.
+    linear-gradient(to right,
+      $bar-c0 0,
+      $bar-c1 calc(69% + #{0.69 * $top-stretch}),
+      $bar-c2 calc(100% + #{$top-stretch})) top / 100% 50% no-repeat,
+    // Bottom edge of the footer.
+    linear-gradient(to right,
+      $bar-c0 (-$bottom-stretch),
+      $bar-c1 calc(69% - #{0.31 * $bottom-stretch}),
+      $bar-c2 100%) bottom / 100% 50% no-repeat;
+}
+
+@media print {
+  html::before {
+    display: none;
+  }
+}

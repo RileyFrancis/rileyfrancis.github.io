@@ -4,6 +4,7 @@
 @import "jekyll-theme-minimal";
 
 // Page-specific styles (moved out of the inline <style> blocks in the .md pages)
+@import "overscroll"; // backdrop shown when the page bounces past its ends
 @import "header";     // site header (title, photo, tagline) in the layout
 @import "panel";      // tinted content panel wrapping every page body
 @import "home";       // landing page (index.md, layout: home)
