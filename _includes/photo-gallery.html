@@ -1,0 +1,35 @@
+{% comment %}
+  Justified photo gallery. Lists every image in a folder (default
+  /assets/img/gallery/) in filename order -- prefix names with 01-, 02-, ...
+  to control the order. Alt text comes from the filename, with - and _ read
+  as spaces. Layout is done by assets/js/gallery.js; styling in
+  _sass/gallery.scss.
+
+  Usage: {% include photo-gallery.html %}
+     or: {% include photo-gallery.html folder="/assets/img/trips/" target_height=240 gap=6 %}
+{% endcomment %}
+{%- assign gallery_folder = include.folder | default: "/assets/img/gallery/" -%}
+{%- assign gallery_photos = site.static_files | where_exp: "f", "f.path contains gallery_folder" | sort: "path" -%}
+{%- assign gallery_exts = ".jpg .jpeg .png .webp .gif .avif" | split: " " -%}
+{%- capture gallery_items -%}
+  {%- for photo in gallery_photos -%}
+    {%- assign ext = photo.extname | downcase -%}
+    {%- if gallery_exts contains ext -%}
+      {%- assign alt = photo.basename | replace: "-", " " | replace: "_", " " %}
+  <a class="photo-gallery-item" href="{{ photo.path | relative_url }}" target="_blank" rel="noopener">
+    <img src="{{ photo.path | relative_url }}" alt="{{ alt | escape }}" decoding="async">
+  </a>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- comment -%} An empty folder renders nothing at all. {%- endcomment -%}
+{%- assign gallery_check = gallery_items | strip -%}
+{%- if gallery_check != "" %}
+<div class="photo-gallery"
+  {%- if include.target_height %} data-target-height="{{ include.target_height }}"{% endif -%}
+  {%- if include.gap %} data-gap="{{ include.gap }}"{% endif -%}
+>
+{{ gallery_items }}
+</div>
+<script src="{{ '/assets/js/gallery.js' | relative_url }}"></script>
+{%- endif -%}

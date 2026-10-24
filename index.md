@@ -28,3 +28,5 @@ title: Home
   <a href="https://github.com/RileyFrancis" target="_blank" rel="noopener noreferrer">GitHub</a>
   <a href="mailto:rileyfrancis01@gmail.com">Email</a>
 </p>
+
+{% include photo-gallery.html %}
