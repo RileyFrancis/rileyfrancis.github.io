@@ -17,10 +17,10 @@ My senior design group members included myself, [Martha Condori](https://www.lin
   <div class="carousel-track-wrapper">
     <div class="carousel-track">
       <div class="carousel-slide">
-        <img src="{{ '/assets/img/ITE_map_SLAM.png' | relative_url }}" alt="A SLAM map of a floor in UConn's ITE building."/>
+        <img src="{{ '/assets/img/sdp_team_photo.jpeg' | relative_url }}" alt="A SLAM map of a floor in UConn's ITE building."/>
       </div>
       <div class="carousel-slide">
-        <img src="{{ '/assets/img/sdp_team_photo.jpeg' | relative_url }}" alt="A SLAM map of a floor in UConn's ITE building."/>
+        <img src="{{ '/assets/img/ITE_map_SLAM.png' | relative_url }}" alt="A SLAM map of a floor in UConn's ITE building."/>
       </div>
     </div>
   </div>
