@@ -1,0 +1,44 @@
+// Page-load cascade: each top-level block in the page panel fades and slides
+// in, staggered so the content fills in from the top down.
+//
+// CSS only, so content can never be stranded invisible by a script failing.
+// The fill mode is `backwards`, not `both`: once a block has landed it keeps
+// no transform, which would otherwise create a containing block and shift
+// anything positioned inside it (the carousel, the pdf.js viewer, the sticky
+// sidebar's contents).
+
+$load-duration: 450ms;
+$load-step: 40ms;  // delay between consecutive blocks
+$load-steps: 16;   // blocks past this all share the last delay, so long pages
+                   // (the CV has dozens of entries) still finish in well
+                   // under a second
+
+@keyframes page-load-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.site-header > *,
+.page-panel > section > *,
+.home-hero > * {
+  animation: page-load-in $load-duration cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  animation-delay: $load-steps * $load-step;
+}
+
+@for $i from 1 through $load-steps {
+  .site-header > :nth-child(#{$i}),
+  .page-panel > section > :nth-child(#{$i}),
+  .home-hero > :nth-child(#{$i}) {
+    animation-delay: ($i - 1) * $load-step;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .site-header > *,
+  .page-panel > section > *,
+  .home-hero > * {
+    animation: none;
+  }
+}

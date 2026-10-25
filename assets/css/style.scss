@@ -12,6 +12,7 @@
 @import "resume";     // CV page (cv.md) resume entries
 @import "carousel";   // projects page image carousel
 @import "pdf-viewer"; // projects page pdf.js viewer
+@import "page-load";  // top-to-bottom fade-in of page content on load
 
 
 body {
