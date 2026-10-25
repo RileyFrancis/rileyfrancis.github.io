@@ -13,12 +13,9 @@ title: Home
 </p>
 
 <p class="home-bio">
-  I'm an undergraduate in Storrs, Connecticut, working toward a dual degree in
-  computer science and pure mathematics. My research has spanned reinforcement
-  learning for legged robots, graph neural networks for brain-connectivity data,
-  and computer vision — and this fall I'm joining Amazon Robotics as a software
-  development engineer intern. Outside of all that, you'll usually find me
-  outdoors.
+  Hi there, I'm Riley! I'm an undergraduate student at the University of Connecticut studying computer science and pure mathmatics. I have strong interests in robotics and AI. 
+
+  Outside of my studies, I love hiking and skiing and mountain biking! You'll always find me tinkering with some sort of project.
 </p>
 
 <p class="home-links">
