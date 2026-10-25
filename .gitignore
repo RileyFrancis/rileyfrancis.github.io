@@ -3,3 +3,13 @@ _site
 Gemfile.lock
 *.gem
 .jekyll-cache
+
+# LaTeX build output if the resume is compiled by hand inside _cv/ (the site
+# build compiles into .jekyll-cache instead)
+_cv/*.aux
+_cv/*.log
+_cv/*.out
+_cv/*.fls
+_cv/*.fdb_latexmk
+_cv/*.synctex.gz
+_cv/*.pdf

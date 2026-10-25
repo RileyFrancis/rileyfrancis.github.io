@@ -1,0 +1,60 @@
+---
+layout: default
+title: CV
+permalink: /cv/
+---
+{%- comment -%}
+  Generated from _cv/resume.tex by _plugins/latex_cv.rb -- edit the LaTeX,
+  not this page. Styling lives in _sass/resume.scss.
+{%- endcomment -%}
+{%- assign cv = site.data.cv %}
+<div class="cv-title">
+  <h1>Curriculum Vitae</h1>
+  {%- if cv.pdf_url %}
+  <a class="cv-download" href="{{ cv.pdf_url }}" download>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 3a1 1 0 0 1 1 1v9.59l3.3-3.3a1 1 0 1 1 1.4 1.42l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.42l3.3 3.3V4a1 1 0 0 1 1-1zM5 19a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/>
+    </svg>
+    Download PDF
+  </a>
+  {%- endif %}
+</div>
+
+{% for section in cv.sections %}
+<h2 id="{{ section.id }}">{{ section.title }}</h2>
+{%- for block in section.blocks %}
+{%- case block.type %}
+{%- when "entry" %}
+<div class="cv-entry">
+  {%- for row in block.rows %}
+  <div class="cv-row{% if forloop.first %} cv-row--head{% endif %}">
+    <div class="cv-row-left">{{ row.left }}</div>
+    {%- if row.right %}
+    <div class="cv-row-right">{{ row.right }}</div>
+    {%- endif %}
+  </div>
+  {%- endfor %}
+  {%- if block.bullets.size > 0 %}
+  <ul class="cv-bullets">
+    {%- for bullet in block.bullets %}
+    <li>{{ bullet }}</li>
+    {%- endfor %}
+  </ul>
+  {%- endif %}
+</div>
+{%- when "table" %}
+<dl class="cv-table">
+  {%- for row in block.rows %}
+  <dt>{{ row.label }}</dt>
+  <dd>{{ row.value }}</dd>
+  {%- endfor %}
+</dl>
+{%- when "text" %}
+<p class="cv-text">{{ block.html }}</p>
+{%- endcase %}
+{%- endfor %}
+{%- unless forloop.last %}
+
+<hr>
+{%- endunless %}
+{% endfor %}

@@ -8,6 +8,11 @@ jobs:
     name: script/cibuild
     steps:
       - uses: actions/checkout@v2
+      # The CV page and PDF are compiled from _cv/resume.tex during the build.
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-base texlive-latex-recommended
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2

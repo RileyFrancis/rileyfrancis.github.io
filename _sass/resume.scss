@@ -1,41 +1,130 @@
-// Resume entry layout used on the home page (index.md):
-// two-column rows with a left title/subrole and a right location/date.
+// CV page (cv.html), generated from _cv/resume.tex by _plugins/latex_cv.rb.
+// Each entry mirrors the LaTeX: rows split by \hfill into a left part and a
+// right-aligned part (dates, mentors), then optional bullets.
 
-.section {
-  margin-bottom: 1.5rem;
+.cv-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  margin-bottom: 20px;
+
+  h1 {
+    margin: 0;
+  }
 }
-.line {
+
+// Pill in the nav/footer gradient, so it reads as part of the site chrome.
+.page-panel a.cv-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  background: linear-gradient(154deg, rgba(42, 123, 155, 1) 0%, rgba(69, 186, 163, 1) 69%, rgba(240, 255, 107, 1) 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(30, 70, 40, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  // The theme bolds links on hover; keep the weight so the pill doesn't jump.
+  &:hover,
+  &:focus {
+    color: #fff;
+    font-weight: 600;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(30, 70, 40, 0.25);
+  }
+}
+
+.cv-entry {
+  margin: 0 0 1.25rem 0.75rem;
+}
+
+.cv-row {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.25rem;
-}
-.left {
-  flex: 1;
-}
-.left strong {
-  display: block;
-  font-weight: 600;
-}
-.subrole {
+  align-items: baseline;
+  gap: 1rem;
   color: #555;
-  font-style: italic;
-  margin-top: 0.1rem;
-  display: block;
-}
-.right {
-  text-align: right;
-  min-width: 220px;
-  margin-left: 1rem;
-  line-height: 1.3;
-}
-.right .date {
-  display: block;
-  font-size: 0.9em;
-  color: #444;
-  margin-top: 0.15rem;
-}
-.details {
-  margin-left: 1rem;
   font-size: 0.95em;
+}
+
+.cv-row--head {
+  color: inherit;
+  font-size: 1em;
+  margin-bottom: 0.1rem;
+
+  strong {
+    color: #222;
+    font-weight: 600;
+  }
+}
+
+.cv-row-right {
+  flex-shrink: 0;
+  max-width: 50%;
+  text-align: right;
+  font-size: 0.9em;
+  color: #555;
+}
+
+// Override the theme's indented section lists.
+section ul.cv-bullets {
+  margin: 0.35rem 0 0 1.25rem;
+  padding-left: 1rem;
+  font-size: 0.95em;
+
+  li {
+    margin-bottom: 0.2rem;
+  }
+}
+
+.cv-table {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 1rem;
+  margin: 0 0 1.25rem 0.75rem;
+
+  dt {
+    font-weight: 600;
+    color: #222;
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+section p.cv-text {
+  margin-left: 0.75rem;
+}
+
+@media screen and (max-width: 600px) {
+  .cv-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cv-row-right {
+    max-width: none;
+    text-align: left;
+  }
+
+  .cv-table {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+
+    dd {
+      margin-bottom: 0.5rem;
+    }
+  }
 }
